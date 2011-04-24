@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pwnstyles_rails}
-  s.version = "0.0.0"
+  s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Victor Costan"]
   s.date = %q{2011-04-24}
-  s.description = %q{These are the .scss stylesheets used for .pwnb.us apps.}
+  s.description = %q{Included CSS was designed for reuse across pwnb.us apps.}
   s.email = %q{victor@costan.us}
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -25,11 +25,13 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
-    "config/initializers/stylesheets.rb",
+    "config/initializers/paths.rb",
     "lib/pwnstyles_rails.rb",
     "lib/pwnstyles_rails/all_generator.rb",
     "lib/pwnstyles_rails/engine.rb",
-    "public/stylesheets/scss/_colors.scss",
+    "public/stylesheets/scss/_reset.scss",
+    "public/stylesheets/scss/pwnstyles.scss",
+    "pwnstyles_rails.gemspec",
     "test/helper.rb",
     "test/test_pwnstyles_rails.rb"
   ]
@@ -37,7 +39,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.7.2}
-  s.summary = %q{A set of default .scss stylesheets for Rails 3 applications.}
+  s.summary = %q{Rails 3 SCSS integration and non-trivial default style.}
   s.test_files = [
     "test/helper.rb",
     "test/test_pwnstyles_rails.rb"
