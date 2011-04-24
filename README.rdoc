@@ -1,6 +1,16 @@
 = pwnstyles_rails
 
-Description goes here.
+Rails 3.0+ engine that ships default .scss style sheets and hooks them up into the application.
+
+== Installation
+
+Add the gem to your Gemfile
+
+    gem 'pwnstyles_rails'
+    
+Run a generator that will copy the stylesheets into the public/ directory.
+
+    rails g pwnstyles_rails:all
 
 == Contributing to pwnstyles_rails
  
@@ -14,6 +24,4 @@ Description goes here.
 
 == Copyright
 
-Copyright (c) 2011 Victor Costan. See LICENSE.txt for
-further details.
-
+Copyright (c) 2011 Victor Costan. See LICENSE.txt for further details.

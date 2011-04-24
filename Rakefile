@@ -15,14 +15,10 @@ Jeweler::Tasks.new do |gem|
   gem.name = "pwnstyles_rails"
   gem.homepage = "http://github.com/pwnall/pwnstyles_rails"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
-  gem.email = "costan@gmail.com"
+  gem.summary = %Q{Rails 3 SCSS integration and non-trivial default style.}
+  gem.description = %Q{Included CSS was designed for reuse across pwnb.us apps.}
+  gem.email = "victor@costan.us"
   gem.authors = ["Victor Costan"]
-  # Include your dependencies below. Runtime dependencies are required when using your gem,
-  # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
-  #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
-  #  gem.add_development_dependency 'rspec', '> 1.2.3'
 end
 Jeweler::RubygemsDotOrgTasks.new
 
