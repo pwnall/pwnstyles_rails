@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pwnstyles_rails}
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Victor Costan"]
@@ -27,11 +27,22 @@ Gem::Specification.new do |s|
     "VERSION",
     "config/initializers/paths.rb",
     "lib/pwnstyles_rails.rb",
-    "lib/pwnstyles_rails/all_generator.rb",
     "lib/pwnstyles_rails/engine.rb",
+    "lib/pwnstyles_rails/generators/install_generator.rb",
+    "lib/pwnstyles_rails/generators/update_generator.rb",
     "public/stylesheets/.gitignore",
-    "public/stylesheets/scss/_reset.scss",
+    "public/stylesheets/scss/generic/_controls.scss",
+    "public/stylesheets/scss/generic/_links.scss",
+    "public/stylesheets/scss/generic/_menu.scss",
+    "public/stylesheets/scss/generic/_reset.scss",
+    "public/stylesheets/scss/modules/_body.scss",
+    "public/stylesheets/scss/modules/_footer.scss",
+    "public/stylesheets/scss/modules/_header.scss",
+    "public/stylesheets/scss/modules/_status_bar.scss",
     "public/stylesheets/scss/pwnstyles.scss",
+    "public/stylesheets/scss/vars/_app.scss",
+    "public/stylesheets/scss/vars/_color_scheme.scss",
+    "public/stylesheets/scss/vars/_layout_sizes.scss",
     "pwnstyles_rails.gemspec",
     "test/helper.rb",
     "test/test_pwnstyles_rails.rb"
