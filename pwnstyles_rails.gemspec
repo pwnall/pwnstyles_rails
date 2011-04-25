@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Victor Costan"]
-  s.date = %q{2011-04-24}
+  s.date = %q{2011-04-25}
   s.description = %q{Included CSS was designed for reuse across pwnb.us apps.}
   s.email = %q{victor@costan.us}
   s.extra_rdoc_files = [
@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
     "lib/pwnstyles_rails.rb",
     "lib/pwnstyles_rails/all_generator.rb",
     "lib/pwnstyles_rails/engine.rb",
+    "public/stylesheets/.gitignore",
     "public/stylesheets/scss/_reset.scss",
     "public/stylesheets/scss/pwnstyles.scss",
     "pwnstyles_rails.gemspec",
@@ -49,23 +50,23 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<haml>, [">= 3.0.25"])
       s.add_runtime_dependency(%q<rails>, [">= 3.0.0"])
+      s.add_runtime_dependency(%q<sass>, [">= 3.1.0"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
     else
-      s.add_dependency(%q<haml>, [">= 3.0.25"])
       s.add_dependency(%q<rails>, [">= 3.0.0"])
+      s.add_dependency(%q<sass>, [">= 3.1.0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_dependency(%q<rcov>, [">= 0"])
     end
   else
-    s.add_dependency(%q<haml>, [">= 3.0.25"])
     s.add_dependency(%q<rails>, [">= 3.0.0"])
+    s.add_dependency(%q<sass>, [">= 3.1.0"])
     s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
