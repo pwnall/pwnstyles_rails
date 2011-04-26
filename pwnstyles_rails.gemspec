@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pwnstyles_rails}
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Victor Costan"]
-  s.date = %q{2011-04-25}
+  s.date = %q{2011-04-26}
   s.description = %q{Included CSS was designed for reuse across pwnb.us apps.}
   s.email = %q{victor@costan.us}
   s.extra_rdoc_files = [
@@ -29,7 +29,13 @@ Gem::Specification.new do |s|
     "lib/pwnstyles_rails.rb",
     "lib/pwnstyles_rails/engine.rb",
     "lib/pwnstyles_rails/generators/install_generator.rb",
+    "lib/pwnstyles_rails/generators/layouts/_footer.html.erb",
+    "lib/pwnstyles_rails/generators/layouts/_header.html.erb",
+    "lib/pwnstyles_rails/generators/layouts/_menu.html.erb",
+    "lib/pwnstyles_rails/generators/layouts/_status_bar.html.erb",
+    "lib/pwnstyles_rails/generators/layouts/application.html.erb",
     "lib/pwnstyles_rails/generators/update_generator.rb",
+    "public/javascripts/pwn-fx.js",
     "public/stylesheets/.gitignore",
     "public/stylesheets/scss/generic/_controls.scss",
     "public/stylesheets/scss/generic/_links.scss",
