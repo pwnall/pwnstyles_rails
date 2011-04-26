@@ -14,3 +14,18 @@ body {
   width: $page-width;
   overflow: hidden;
 }
+
+article#sidebar {
+  float: right;
+  width: $sidebar-width;
+}
+
+article#main {
+  float: left;
+  width: $page-width;
+}
+
+article#sidebar + article#main {
+  float: left;
+  width: ($page-width - $sidebar-width - $column-total - $column-margin);
+}
