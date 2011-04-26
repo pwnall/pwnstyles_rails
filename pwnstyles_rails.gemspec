@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pwnstyles_rails}
-  s.version = "0.0.3"
+  s.version = "0.0.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Victor Costan"]
@@ -41,6 +41,7 @@ Gem::Specification.new do |s|
     "public/stylesheets/scss/generic/_links.scss",
     "public/stylesheets/scss/generic/_menu.scss",
     "public/stylesheets/scss/generic/_reset.scss",
+    "public/stylesheets/scss/generic/_text.scss",
     "public/stylesheets/scss/modules/_body.scss",
     "public/stylesheets/scss/modules/_footer.scss",
     "public/stylesheets/scss/modules/_header.scss",
@@ -48,6 +49,7 @@ Gem::Specification.new do |s|
     "public/stylesheets/scss/pwnstyles.scss",
     "public/stylesheets/scss/vars/_app.scss",
     "public/stylesheets/scss/vars/_color_scheme.scss",
+    "public/stylesheets/scss/vars/_fonts.scss",
     "public/stylesheets/scss/vars/_layout_sizes.scss",
     "pwnstyles_rails.gemspec",
     "test/helper.rb",
