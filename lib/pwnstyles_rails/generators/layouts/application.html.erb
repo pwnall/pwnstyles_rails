@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>App Name</title>
+<%= csrf_meta_tag %>
+<%= favicon_link_tag %>
+<%= stylesheet_link_tag :pwnstyles, :cache => true %>
+<%= javascript_include_tag :all, :cache => true %>
+</head>
+<body>
+<header>
+<%= render 'layouts/header' %>
+</header>
+
+<div id="real-body">
+<%= render 'layouts/status_bar' %>
+<div id="content-wrapper">
+<article id="main">
+<%= yield %>
+</article>
+</div>
+</div>
+
+<footer>
+<%= render 'layouts/footer' %>
+</footer>
+</body>
+</html>

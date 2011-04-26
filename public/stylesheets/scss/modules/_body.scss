@@ -4,11 +4,13 @@ body {
   background: $footer-background-color2;
 }
 
+#real-body {
+  background-color: #ffffff;
+}
+
 #content-wrapper {
   margin: 0 auto;
   padding: 0 0 24px 0;
   width: $page-width;
   overflow: hidden;
-  background: #ffffff;
 }
-
