@@ -14,8 +14,8 @@ class UpdateGenerator < Rails::Generators::Base
   private
   
   def copy_static_assets(exclude_list = [])
-    copy_dir 'public/stylesheets', 'public/pwnstyles/stylesheets'
-    copy_dir 'public/javascripts', 'public/javascripts'
+    copy_dir 'public/stylesheets', 'public/pwnstyles/stylesheets', exclude_list
+    copy_dir 'public/javascripts', 'public/javascripts', exclude_list
   end
   
   def copy_dir(source_dir, destination_dir, exclude_list = [])
