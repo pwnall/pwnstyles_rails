@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pwnstyles_rails}
-  s.version = "0.0.7"
+  s.version = "0.0.8"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Victor Costan"]
@@ -39,6 +39,7 @@ Gem::Specification.new do |s|
     "public/javascripts/pwn-fx.js",
     "public/stylesheets/.gitignore",
     "public/stylesheets/scss/generic/_controls.scss",
+    "public/stylesheets/scss/generic/_images.scss",
     "public/stylesheets/scss/generic/_links.scss",
     "public/stylesheets/scss/generic/_menu.scss",
     "public/stylesheets/scss/generic/_reset.scss",
