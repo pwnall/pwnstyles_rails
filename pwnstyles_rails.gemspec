@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pwnstyles_rails}
-  s.version = "0.0.9"
+  s.version = "0.0.10"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Victor Costan"]
-  s.date = %q{2011-04-27}
+  s.date = %q{2011-04-28}
   s.description = %q{Included CSS was designed for reuse across pwnb.us apps.}
   s.email = %q{victor@costan.us}
   s.extra_rdoc_files = [
@@ -37,25 +37,26 @@ Gem::Specification.new do |s|
     "lib/pwnstyles_rails/generators/layouts/application.html.erb",
     "lib/pwnstyles_rails/generators/update_generator.rb",
     "public/javascripts/pwn-fx.js",
-    "public/stylesheets/.gitignore",
-    "public/stylesheets/scss/generic/_controls.scss",
-    "public/stylesheets/scss/generic/_images.scss",
-    "public/stylesheets/scss/generic/_links.scss",
-    "public/stylesheets/scss/generic/_menu.scss",
-    "public/stylesheets/scss/generic/_pwnfx.scss",
-    "public/stylesheets/scss/generic/_reset.scss",
-    "public/stylesheets/scss/generic/_tables.scss",
-    "public/stylesheets/scss/generic/_text.scss",
-    "public/stylesheets/scss/modules/_body.scss",
-    "public/stylesheets/scss/modules/_footer.scss",
-    "public/stylesheets/scss/modules/_header.scss",
-    "public/stylesheets/scss/modules/_status_bar.scss",
-    "public/stylesheets/scss/pwnstyles.scss",
-    "public/stylesheets/scss/vars/_all.scss",
-    "public/stylesheets/scss/vars/_app.scss",
-    "public/stylesheets/scss/vars/_color_scheme.scss",
-    "public/stylesheets/scss/vars/_fonts.scss",
-    "public/stylesheets/scss/vars/_layout_sizes.scss",
+    "public/pwnstyles/stylesheets/.gitignore",
+    "public/pwnstyles/stylesheets/scss/generic/_controls.scss",
+    "public/pwnstyles/stylesheets/scss/generic/_images.scss",
+    "public/pwnstyles/stylesheets/scss/generic/_links.scss",
+    "public/pwnstyles/stylesheets/scss/generic/_menu.scss",
+    "public/pwnstyles/stylesheets/scss/generic/_pwnfx.scss",
+    "public/pwnstyles/stylesheets/scss/generic/_reset.scss",
+    "public/pwnstyles/stylesheets/scss/generic/_tables.scss",
+    "public/pwnstyles/stylesheets/scss/generic/_text.scss",
+    "public/pwnstyles/stylesheets/scss/modules/_body.scss",
+    "public/pwnstyles/stylesheets/scss/modules/_footer.scss",
+    "public/pwnstyles/stylesheets/scss/modules/_header.scss",
+    "public/pwnstyles/stylesheets/scss/modules/_status_bar.scss",
+    "public/pwnstyles/stylesheets/scss/pwnstyles.scss",
+    "public/pwnstyles/stylesheets/scss/vars/_all.scss",
+    "public/pwnstyles/stylesheets/scss/vars/_app.scss",
+    "public/pwnstyles/stylesheets/scss/vars/_color_scheme.scss",
+    "public/pwnstyles/stylesheets/scss/vars/_fonts.scss",
+    "public/pwnstyles/stylesheets/scss/vars/_layout_sizes.scss",
+    "public/stylesheets/scss/application.scss",
     "pwnstyles_rails.gemspec",
     "test/helper.rb",
     "test/test_pwnstyles_rails.rb"
