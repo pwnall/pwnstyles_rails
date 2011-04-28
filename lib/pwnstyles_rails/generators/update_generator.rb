@@ -9,7 +9,8 @@ class UpdateGenerator < Rails::Generators::Base
   def static_assets
     excludes = [
       'pwnstyles/stylesheets/scss/vars/_app.scss',
-      'stylesheets/scss/application.scss'
+      'stylesheets/scss/application.scss',
+      'stylesheets/.gitignore'
     ]
     copy_static_assets excludes
   end
