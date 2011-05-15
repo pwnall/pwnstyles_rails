@@ -19,6 +19,7 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{Included CSS was designed for reuse across pwnb.us apps.}
   gem.email = "victor@costan.us"
   gem.authors = ["Victor Costan"]
+  # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
 
