@@ -1,10 +1,10 @@
 require 'rails'
 
 # :nodoc: namespace
-module PwnstylesRails
+module Pwnstyles
 
 
-# rails g pwnstyles_rails:update
+# rails g pwnstyles:update
 class UpdateGenerator < Rails::Generators::Base
   def static_assets
     excludes = [
@@ -29,6 +29,6 @@ class UpdateGenerator < Rails::Generators::Base
       copy_file source, dest
     end
   end
-end  # class PwnstylesRails::AllGenerator
+end  # class Pwnstyles::AllGenerator
 
-end  # namespace PwnstylesRails
+end  # namespace Pwnstyles

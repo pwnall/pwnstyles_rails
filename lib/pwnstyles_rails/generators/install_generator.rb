@@ -1,10 +1,10 @@
 require 'rails'
 
 # :nodoc: namespace
-module PwnstylesRails
+module Pwnstyles
 
 
-# rails g pwnstyles_rails:install
+# rails g pwnstyles:install
 class InstallGenerator < UpdateGenerator
   def staic_assets
     copy_static_assets []
@@ -19,6 +19,6 @@ class InstallGenerator < UpdateGenerator
       copy_file source, dest
     end
   end
-end  # class PwnstylesRails::AllGenerator
+end  # class Pwnstyles::AllGenerator
 
-end  # namespace PwnstylesRails
+end  # namespace Pwnstyles
