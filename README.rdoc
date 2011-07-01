@@ -10,11 +10,11 @@ Add the gem to your Gemfile
     
 Run a generator that will copy all defaults into your Rails application.
 
-    rails g pwnstyles_rails:install
+    rails g pwnstyles:install
     
 When updating to new gem versions, run the following generator, which does replace the files intended to hold your changes.
 
-    rails g pwnstyles_rails:update
+    rails g pwnstyles:update
 
 == Contributing to pwnstyles_rails
  
