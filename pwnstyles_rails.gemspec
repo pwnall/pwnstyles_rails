@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Victor Costan}]
-  s.date = %q{2011-05-15}
+  s.date = %q{2011-07-03}
   s.description = %q{Included CSS was designed for reuse across pwnb.us apps.}
   s.email = %q{victor@costan.us}
   s.extra_rdoc_files = [
@@ -25,8 +25,8 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "app/assets/javascripts/pwn-fx.js",
     "config/initializers/fix_fields_with_errors.rb",
-    "config/initializers/paths.rb",
     "lib/pwnstyles_rails.rb",
     "lib/pwnstyles_rails/engine.rb",
     "lib/pwnstyles_rails/generators/install_generator.rb",
@@ -36,59 +36,52 @@ Gem::Specification.new do |s|
     "lib/pwnstyles_rails/generators/layouts/_status_bar.html.erb",
     "lib/pwnstyles_rails/generators/layouts/application.html.erb",
     "lib/pwnstyles_rails/generators/update_generator.rb",
-    "public/javascripts/pwn-fx.js",
-    "public/pwnstyles/stylesheets/.gitignore",
-    "public/pwnstyles/stylesheets/scss/generic/_controls.scss",
-    "public/pwnstyles/stylesheets/scss/generic/_images.scss",
-    "public/pwnstyles/stylesheets/scss/generic/_links.scss",
-    "public/pwnstyles/stylesheets/scss/generic/_menu.scss",
-    "public/pwnstyles/stylesheets/scss/generic/_pwnfx.scss",
-    "public/pwnstyles/stylesheets/scss/generic/_reset.scss",
-    "public/pwnstyles/stylesheets/scss/generic/_tables.scss",
-    "public/pwnstyles/stylesheets/scss/generic/_text.scss",
-    "public/pwnstyles/stylesheets/scss/modules/_body.scss",
-    "public/pwnstyles/stylesheets/scss/modules/_footer.scss",
-    "public/pwnstyles/stylesheets/scss/modules/_header.scss",
-    "public/pwnstyles/stylesheets/scss/modules/_status_bar.scss",
-    "public/pwnstyles/stylesheets/scss/pwnstyles.scss",
-    "public/pwnstyles/stylesheets/scss/vars/_all.scss",
-    "public/pwnstyles/stylesheets/scss/vars/_app.scss",
-    "public/pwnstyles/stylesheets/scss/vars/_color_scheme.scss",
-    "public/pwnstyles/stylesheets/scss/vars/_fonts.scss",
-    "public/pwnstyles/stylesheets/scss/vars/_layout_sizes.scss",
-    "public/stylesheets/.gitignore",
-    "public/stylesheets/scss/application.scss",
     "pwnstyles_rails.gemspec",
+    "stylesheets/generic/_controls.scss",
+    "stylesheets/generic/_images.scss",
+    "stylesheets/generic/_links.scss",
+    "stylesheets/generic/_menu.scss",
+    "stylesheets/generic/_pwnfx.scss",
+    "stylesheets/generic/_reset.scss",
+    "stylesheets/generic/_tables.scss",
+    "stylesheets/generic/_text.scss",
+    "stylesheets/modules/_body.scss",
+    "stylesheets/modules/_footer.scss",
+    "stylesheets/modules/_header.scss",
+    "stylesheets/modules/_status_bar.scss",
+    "stylesheets/vars/_color_scheme.scss",
+    "stylesheets/vars/_fonts.scss",
+    "stylesheets/vars/_layout_sizes.scss",
     "test/helper.rb",
     "test/test_pwnstyles_rails.rb"
   ]
   s.homepage = %q{http://github.com/pwnall/pwnstyles_rails}
   s.licenses = [%q{MIT}]
   s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.2}
+  s.rubygems_version = %q{1.8.4}
   s.summary = %q{Rails 3 SCSS integration and non-trivial default style.}
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<rails>, [">= 3.0.0"])
-      s.add_runtime_dependency(%q<sass>, [">= 3.1.0"])
+      s.add_runtime_dependency(%q<rails>, [">= 3.1.0.rc4"])
+      s.add_runtime_dependency(%q<sass-rails>, [">= 3.1.0.rc"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.0"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
     else
-      s.add_dependency(%q<rails>, [">= 3.0.0"])
-      s.add_dependency(%q<sass>, [">= 3.1.0"])
+      s.add_dependency(%q<rails>, [">= 3.1.0.rc4"])
+      s.add_dependency(%q<sass-rails>, [">= 3.1.0.rc"])
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.0"])
       s.add_dependency(%q<rcov>, [">= 0"])
     end
   else
-    s.add_dependency(%q<rails>, [">= 3.0.0"])
-    s.add_dependency(%q<sass>, [">= 3.1.0"])
+    s.add_dependency(%q<rails>, [">= 3.1.0.rc4"])
+    s.add_dependency(%q<sass-rails>, [">= 3.1.0.rc"])
     s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.0"])
