@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pwnstyles_rails}
-  s.version = "0.0.13"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Victor Costan}]
@@ -29,17 +29,16 @@ Gem::Specification.new do |s|
     "config/initializers/fix_fields_with_errors.rb",
     "lib/pwnstyles_rails.rb",
     "lib/pwnstyles_rails/engine.rb",
-    "lib/pwnstyles_rails/generators/assets/stylesheets/pwnstyles/_app_vars.scss",
-    "lib/pwnstyles_rails/generators/assets/stylesheets/pwnstyles/pwnstyles_main.scss",
-    "lib/pwnstyles_rails/generators/install_generator.rb",
+    "lib/pwnstyles_rails/generators/all_generator.rb",
+    "lib/pwnstyles_rails/generators/assets/stylesheets/pwnstyles/_app_vars.css.scss",
+    "lib/pwnstyles_rails/generators/assets/stylesheets/pwnstyles/pwnstyles_main.css.scss",
     "lib/pwnstyles_rails/generators/layouts/_footer.html.erb",
     "lib/pwnstyles_rails/generators/layouts/_header.html.erb",
     "lib/pwnstyles_rails/generators/layouts/_menu.html.erb",
     "lib/pwnstyles_rails/generators/layouts/_status_bar.html.erb",
     "lib/pwnstyles_rails/generators/layouts/application.html.erb",
-    "lib/pwnstyles_rails/generators/update_generator.rb",
     "pwnstyles_rails.gemspec",
-    "stylesheets/_pwnstyles.scss",
+    "stylesheets/_pwnstyles.css.scss",
     "stylesheets/generic/_controls.css.scss",
     "stylesheets/generic/_images.css.scss",
     "stylesheets/generic/_links.css.scss",
