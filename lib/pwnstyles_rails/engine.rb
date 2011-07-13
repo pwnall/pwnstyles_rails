@@ -7,8 +7,7 @@ module PwnstylesRails
 
 class Engine < Rails::Engine
   generators do
-    require 'pwnstyles_rails/generators/update_generator.rb'
-    require 'pwnstyles_rails/generators/install_generator.rb'
+    require 'pwnstyles_rails/generators/all_generator.rb'
   end
   
   initializer :pwnstyles_paths, :after => :setup_sass do |app|

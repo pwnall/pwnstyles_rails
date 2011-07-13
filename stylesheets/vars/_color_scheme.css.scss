@@ -6,7 +6,7 @@
 
 // Primary colors used in the app.
 $colors: 3 !default;
-//$main-color1: hsl(240deg, 100%, 50%) !default;
+$main-color1: hsl(240deg, 100%, 50%) !default;
 $main-color2: adjust-hue($main-color1, 360 / $colors) !default;
 $main-color3: adjust-hue($main-color1, 360 / $colors) !default;
 $main-color4: adjust-hue($main-color1, 360 / $colors) !default;

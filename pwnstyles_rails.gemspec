@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Victor Costan}]
-  s.date = %q{2011-07-03}
+  s.date = %q{2011-07-13}
   s.description = %q{Included CSS was designed for reuse across pwnb.us apps.}
   s.email = %q{victor@costan.us}
   s.extra_rdoc_files = [
@@ -29,6 +29,8 @@ Gem::Specification.new do |s|
     "config/initializers/fix_fields_with_errors.rb",
     "lib/pwnstyles_rails.rb",
     "lib/pwnstyles_rails/engine.rb",
+    "lib/pwnstyles_rails/generators/assets/stylesheets/pwnstyles/_app_vars.scss",
+    "lib/pwnstyles_rails/generators/assets/stylesheets/pwnstyles/pwnstyles_main.scss",
     "lib/pwnstyles_rails/generators/install_generator.rb",
     "lib/pwnstyles_rails/generators/layouts/_footer.html.erb",
     "lib/pwnstyles_rails/generators/layouts/_header.html.erb",
@@ -37,28 +39,29 @@ Gem::Specification.new do |s|
     "lib/pwnstyles_rails/generators/layouts/application.html.erb",
     "lib/pwnstyles_rails/generators/update_generator.rb",
     "pwnstyles_rails.gemspec",
-    "stylesheets/generic/_controls.scss",
-    "stylesheets/generic/_images.scss",
-    "stylesheets/generic/_links.scss",
-    "stylesheets/generic/_menu.scss",
-    "stylesheets/generic/_pwnfx.scss",
-    "stylesheets/generic/_reset.scss",
-    "stylesheets/generic/_tables.scss",
-    "stylesheets/generic/_text.scss",
-    "stylesheets/modules/_body.scss",
-    "stylesheets/modules/_footer.scss",
-    "stylesheets/modules/_header.scss",
-    "stylesheets/modules/_status_bar.scss",
-    "stylesheets/vars/_color_scheme.scss",
-    "stylesheets/vars/_fonts.scss",
-    "stylesheets/vars/_layout_sizes.scss",
+    "stylesheets/_pwnstyles.scss",
+    "stylesheets/generic/_controls.css.scss",
+    "stylesheets/generic/_images.css.scss",
+    "stylesheets/generic/_links.css.scss",
+    "stylesheets/generic/_menu.css.scss",
+    "stylesheets/generic/_pwnfx.css.scss",
+    "stylesheets/generic/_reset.css.scss",
+    "stylesheets/generic/_tables.css.scss",
+    "stylesheets/generic/_text.css.scss",
+    "stylesheets/modules/_body.css.scss",
+    "stylesheets/modules/_footer.css.scss",
+    "stylesheets/modules/_header.css.scss",
+    "stylesheets/modules/_status_bar.css.scss",
+    "stylesheets/vars/_color_scheme.css.scss",
+    "stylesheets/vars/_fonts.css.scss",
+    "stylesheets/vars/_layout_sizes.css.scss",
     "test/helper.rb",
     "test/test_pwnstyles_rails.rb"
   ]
   s.homepage = %q{http://github.com/pwnall/pwnstyles_rails}
   s.licenses = [%q{MIT}]
   s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.4}
+  s.rubygems_version = %q{1.8.5}
   s.summary = %q{Rails 3 SCSS integration and non-trivial default style.}
 
   if s.respond_to? :specification_version then
