@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{pwnstyles_rails}
-  s.version = "0.1.1"
+  s.name = "pwnstyles_rails"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Victor Costan}]
-  s.date = %q{2011-09-12}
-  s.description = %q{Included CSS was designed for reuse across pwnb.us apps.}
-  s.email = %q{victor@costan.us}
+  s.authors = ["Victor Costan"]
+  s.date = "2011-10-24"
+  s.description = "Included CSS was designed for reuse across pwnb.us apps."
+  s.email = "victor@costan.us"
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.rdoc"
@@ -58,11 +58,11 @@ Gem::Specification.new do |s|
     "test/helper.rb",
     "test/test_pwnstyles_rails.rb"
   ]
-  s.homepage = %q{http://github.com/pwnall/pwnstyles_rails}
-  s.licenses = [%q{MIT}]
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.8}
-  s.summary = %q{Rails 3 SCSS integration and non-trivial default style.}
+  s.homepage = "http://github.com/pwnall/pwnstyles_rails"
+  s.licenses = ["MIT"]
+  s.require_paths = ["lib"]
+  s.rubygems_version = "1.8.11"
+  s.summary = "Rails 3 SCSS integration and non-trivial default style."
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
