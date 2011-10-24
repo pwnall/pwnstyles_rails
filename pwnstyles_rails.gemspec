@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pwnstyles_rails}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Victor Costan}]
-  s.date = %q{2011-07-20}
+  s.date = %q{2011-09-12}
   s.description = %q{Included CSS was designed for reuse across pwnb.us apps.}
   s.email = %q{victor@costan.us}
   s.extra_rdoc_files = [
@@ -40,6 +40,7 @@ Gem::Specification.new do |s|
     "pwnstyles_rails.gemspec",
     "stylesheets/_pwnstyles.css.scss",
     "stylesheets/generic/_controls.css.scss",
+    "stylesheets/generic/_forms.css.scss",
     "stylesheets/generic/_images.css.scss",
     "stylesheets/generic/_links.css.scss",
     "stylesheets/generic/_menu.css.scss",
@@ -60,30 +61,30 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/pwnall/pwnstyles_rails}
   s.licenses = [%q{MIT}]
   s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.5}
+  s.rubygems_version = %q{1.8.8}
   s.summary = %q{Rails 3 SCSS integration and non-trivial default style.}
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<rails>, [">= 3.1.0.rc4"])
-      s.add_runtime_dependency(%q<sass-rails>, [">= 3.1.0.rc"])
+      s.add_runtime_dependency(%q<rails>, [">= 3.1.0"])
+      s.add_runtime_dependency(%q<sass-rails>, [">= 3.1.0"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.0"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
     else
-      s.add_dependency(%q<rails>, [">= 3.1.0.rc4"])
-      s.add_dependency(%q<sass-rails>, [">= 3.1.0.rc"])
+      s.add_dependency(%q<rails>, [">= 3.1.0"])
+      s.add_dependency(%q<sass-rails>, [">= 3.1.0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.0"])
       s.add_dependency(%q<rcov>, [">= 0"])
     end
   else
-    s.add_dependency(%q<rails>, [">= 3.1.0.rc4"])
-    s.add_dependency(%q<sass-rails>, [">= 3.1.0.rc"])
+    s.add_dependency(%q<rails>, [">= 3.1.0"])
+    s.add_dependency(%q<sass-rails>, [">= 3.1.0"])
     s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.0"])
