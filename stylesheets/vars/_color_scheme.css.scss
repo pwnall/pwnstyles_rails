@@ -22,10 +22,6 @@ $header-title-color: change-color($main-color1,
 $header-text-color: change-color($main-color1,
     $saturation: 100%, $lightness: 20%) !default;
 
-$footer-background-color1: change-color($main-color1,
-    $saturation: 66%, $lightness: 88%) !default;
-$footer-background-color2: change-color($main-color1,
-    $saturation: 66%, $lightness: 97%) !default;
 $footer-border-color: change-color($main-color1,
     $saturation: 66%, $lightness: 76%) !default;
 $footer-text-color: change-color($main-color1,
