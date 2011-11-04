@@ -4,3 +4,5 @@ th, td {
 tr, th, td {
   vertical-align: middle;
 }
+tbody td:nth-child(even) {
+}
