@@ -4,6 +4,12 @@
   padding: 0;
   list-style: none;
   
+  // Note: using nth-child(n) to get a more specific selector than the 
+  //       one for striped background in generic/_lists.css.scss 
+  li:nth-child(n) {
+    background-color: inherit;    
+  }
+  
   > li {
     display: block;
     float: left;

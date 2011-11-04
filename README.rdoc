@@ -1,6 +1,6 @@
 = pwnstyles_rails
 
-Rails 3.0+ engine that ships default .scss style sheets and hooks them up into the application.
+Rails 3.1+ engine that ships default .scss style sheets.
 
 == Installation
 
