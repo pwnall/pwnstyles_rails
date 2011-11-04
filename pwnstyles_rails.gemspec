@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "pwnstyles_rails"
-  s.version = "0.1.3"
+  s.version = "0.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Victor Costan"]
-  s.date = "2011-11-02"
+  s.date = "2011-11-04"
   s.description = "Included CSS was designed for reuse across pwnb.us apps."
   s.email = "victor@costan.us"
   s.extra_rdoc_files = [
@@ -26,6 +26,24 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "app/assets/javascripts/pwn-fx.js",
+    "app/assets/stylesheets/_pwnstyles.css.scss",
+    "app/assets/stylesheets/generic/_controls.css.scss",
+    "app/assets/stylesheets/generic/_forms.css.scss",
+    "app/assets/stylesheets/generic/_images.css.scss",
+    "app/assets/stylesheets/generic/_links.css.scss",
+    "app/assets/stylesheets/generic/_lists.css.scss",
+    "app/assets/stylesheets/generic/_menu.css.scss",
+    "app/assets/stylesheets/generic/_pwnfx.css.scss",
+    "app/assets/stylesheets/generic/_reset.css.scss",
+    "app/assets/stylesheets/generic/_tables.css.scss",
+    "app/assets/stylesheets/generic/_text.css.scss",
+    "app/assets/stylesheets/modules/_body.css.scss",
+    "app/assets/stylesheets/modules/_footer.css.scss",
+    "app/assets/stylesheets/modules/_header.css.scss",
+    "app/assets/stylesheets/modules/_status_bar.css.scss",
+    "app/assets/stylesheets/vars/_color_scheme.css.scss",
+    "app/assets/stylesheets/vars/_fonts.css.scss",
+    "app/assets/stylesheets/vars/_layout_sizes.css.scss",
     "config/initializers/fix_fields_with_errors.rb",
     "lib/pwnstyles_rails.rb",
     "lib/pwnstyles_rails/engine.rb",
@@ -38,23 +56,6 @@ Gem::Specification.new do |s|
     "lib/pwnstyles_rails/generators/layouts/_status_bar.html.erb",
     "lib/pwnstyles_rails/generators/layouts/application.html.erb",
     "pwnstyles_rails.gemspec",
-    "stylesheets/_pwnstyles.css.scss",
-    "stylesheets/generic/_controls.css.scss",
-    "stylesheets/generic/_forms.css.scss",
-    "stylesheets/generic/_images.css.scss",
-    "stylesheets/generic/_links.css.scss",
-    "stylesheets/generic/_menu.css.scss",
-    "stylesheets/generic/_pwnfx.css.scss",
-    "stylesheets/generic/_reset.css.scss",
-    "stylesheets/generic/_tables.css.scss",
-    "stylesheets/generic/_text.css.scss",
-    "stylesheets/modules/_body.css.scss",
-    "stylesheets/modules/_footer.css.scss",
-    "stylesheets/modules/_header.css.scss",
-    "stylesheets/modules/_status_bar.css.scss",
-    "stylesheets/vars/_color_scheme.css.scss",
-    "stylesheets/vars/_fonts.css.scss",
-    "stylesheets/vars/_layout_sizes.css.scss",
     "test/helper.rb",
     "test/test_pwnstyles_rails.rb"
   ]
@@ -68,23 +69,23 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<rails>, [">= 3.1.0"])
-      s.add_runtime_dependency(%q<sass-rails>, [">= 3.1.0"])
+      s.add_runtime_dependency(%q<rails>, [">= 3.1.1"])
+      s.add_runtime_dependency(%q<sass-rails>, [">= 3.1.4"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.0"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
     else
-      s.add_dependency(%q<rails>, [">= 3.1.0"])
-      s.add_dependency(%q<sass-rails>, [">= 3.1.0"])
+      s.add_dependency(%q<rails>, [">= 3.1.1"])
+      s.add_dependency(%q<sass-rails>, [">= 3.1.4"])
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.0"])
       s.add_dependency(%q<rcov>, [">= 0"])
     end
   else
-    s.add_dependency(%q<rails>, [">= 3.1.0"])
-    s.add_dependency(%q<sass-rails>, [">= 3.1.0"])
+    s.add_dependency(%q<rails>, [">= 3.1.1"])
+    s.add_dependency(%q<sass-rails>, [">= 3.1.4"])
     s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.0"])
