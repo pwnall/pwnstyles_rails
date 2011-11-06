@@ -1,16 +1,14 @@
 header {
-  padding: 0;
   background-color: $header-background-color;
   border-bottom: 1px solid $header-border-color;
 
   hgroup {
     width: $page-width;
     height: $header-height;
-    margin: 0 auto;
-    color: $header-text-color;
-    
+    margin: 0 auto;    
     position: relative;
-    
+
+    color: $header-text-color;
     font-family: $heading-font;
     font-weight: bold;
   }
@@ -60,12 +58,12 @@ header {
     @include menu-list($menu-hover-color, $last-item-right: true);
     background-color: $header-background-color;
 
-    font-size: 18px;
-    line-height: 24px;
+    font-size: $header-menu-font-size;
+    line-height: $header-menu-line-height;
     height: 100%;
     > li > a {
-      padding-top: 16px;
-      height: 24px;
+      padding-top: $header-height - $header-menu-line-height;
+      height: $header-menu-line-height;
     }
   }
   nav a img {

@@ -1,7 +1,5 @@
 // Include in an ul or ol to make it a two-level menu.
 @mixin menu-list($hover-color: $menu-hover-color, $last-item-right: false) {
-  margin: 0;
-  padding: 0;
   list-style: none;
   
   // Note: using nth-child(n) to get a more specific selector than the 
