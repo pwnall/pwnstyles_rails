@@ -23,9 +23,11 @@
     }
   }
   > li:hover {
+    > a {
+      background-color: $hover-color;
+    }
     > ol, > ul {
       display: block;
-      background-color: inherit;
     }
   }
 
@@ -57,6 +59,7 @@
     }
     > li:last-child a {
       vertical-align: bottom;
+      padding-right: 0;
     }
     > li:last-child a span {
       display: inline-block;
