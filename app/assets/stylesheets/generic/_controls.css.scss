@@ -15,6 +15,12 @@ input[type=submit], input[type=button], button, a.button {
   font-size: 1.1em;
   text-transform: uppercase;
   text-decoration: none;
+  display: inline-block;
+  
+  &:visited {
+    color: $button-font-color;
+    background-color: $button-color;
+  }
 
   &:hover {
     color: $button-hover-font-color;

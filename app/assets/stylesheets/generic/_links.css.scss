@@ -2,7 +2,21 @@ a {
   cursor: pointer;
   text-decoration: underline;
 }
-a, a:hover, a:active, a:visited {
+
+// NOTE: broken into multiple sections so the selectors don't get too specific.
+a {
+  color: $link-color;
+  background-color: transparent;
+}
+a:hover {
+  color: $link-color;
+  background-color: transparent;
+}
+a:active {
+  color: $link-color;
+  background-color: transparent;
+}
+a:visited {
   color: $link-color;
   background-color: transparent;
 }
