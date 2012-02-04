@@ -12,7 +12,7 @@ input[type=submit], input[type=button], button, a.button {
   background-color: $button-color;
   border: 1px solid $button-border-color;
   color: $button-font-color;
-  font-size: 1.1em;
+  font-size: 1.21em;
   text-decoration: none;
   display: inline-block;
   
@@ -46,6 +46,8 @@ input[type=text], input[type=email], input[type=tel], input[type=password],
   -webkit-box-shadow: inset 0px 2px 2px $input-shadow-color;
   box-shadow: inset 0px 2px 2px $input-shadow-color;
   background-color: $input-background-color;
+
+  text-decoration: none;
 
   &:hover {
     border: 1px solid $button-hover-border-color;
