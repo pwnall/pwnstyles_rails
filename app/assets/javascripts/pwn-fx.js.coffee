@@ -110,6 +110,33 @@ class PwnFxMove
     targetSelector = 
     target = document.querySelector "[data-pwnfx-move-target=\"#{identifier}\"]"
     target.appendChild element
+    
+# Renders the contents of a template into a DOM element.
+#
+# Attributes:
+#   data-pwnfx-render: identifier for the render operation
+#   data-pwnfx-render-where: insertAdjacentHTML position argument; can be
+#       beforebegin, afterbegin, beforeend, afterend; defaults to beforeend
+#   data-pwnfx-render-target: set on the element(s) receiving the rendered HTML;
+#       set to the identifier in data-pwnfx-render 
+#   data-pwnfx-render-source: set on the <script> tag containing the source HTML
+#       to be rendered; set to the identifier in data-pwnfx-render
+class PwnFxRender
+  constructor: (element, identifier) ->
+    sourceSelector = "script[data-pwnfx-render-source=\"#{identifier}\"]"
+    targetSelector = "[data-pwnfx-render-target=\"#{identifier}\"]"
+    insertionPoint = element.getAttribute('data-pwnfx-render-where') ||
+                     'beforeend'
+    
+    onClick = (event) ->
+      source = document.querySelector sourceSelector
+      html = source.innerHTML
+      for element in document.querySelectorAll(targetSelector)
+        element.insertAdjacentHTML insertionPoint, html
+      event.preventDefault()
+      false
+    element.addEventListener 'click', onClick
+
 
 # Shows / hides elements when an element is clicked or checked / unchecked.
 #
@@ -154,13 +181,17 @@ class PwnFxReveal
 # List of effects.
 pwnEffects = [
   ['data-pwnfx-move', PwnFxMove],
+  ['data-pwnfx-render', PwnFxRender],
   ['data-pwnfx-refresh-url', PwnFxRefresh],
   ['data-pwnfx-confirm', PwnFxConfirm],
   ['data-pwnfx-reveal', PwnFxReveal]
 ]
 
 # Wires JS to elements with data-pwnfx attributes.
-window.PwnFx = ->
+#
+# @param [DOMElement] root the element whose content is wired; use document at
+#                          load time
+window.PwnFx = (root) ->
   for effect in pwnEffects
     attrName = effect[0]
     effectClass = effect[1]
@@ -175,4 +206,4 @@ window.PwnFx = ->
   null
 
 # Honor data-pwnfx attributes after the DOM is loaded.
-window.addEventListener 'load', -> window.PwnFx()
+window.addEventListener 'load', -> window.PwnFx(document)
