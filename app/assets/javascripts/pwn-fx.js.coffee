@@ -5,6 +5,97 @@
 # library provides a replacement that adheres to the new philosophy of
 # unobtrusive JavaScript triggered by HTML5 data- attributes.
 
+
+# The class of the singleton instance that tracks all the effects on the page.
+class PwnFxClass
+  # Creates an instance that isn't aware of any effects.
+  #
+  # After defining an effect class, call registerEffect on this instance to make
+  # it aware of the effect.
+  constructor: ->
+    @effects = []
+    @effectsByName = {}
+  
+  # Wires JS to elements with data-pwnfx attributes.
+  #
+  # @param [DOMElement] root the element whose content is wired; use document at
+  #                          load time
+  wire: (root) ->
+    for effect in @effects
+      attrName = effect[0]
+      effectClass = effect[1]
+      doneAttrName = "#{attrName}-done"
+      attrSelector = "[#{attrName}]"
+      for element in document.querySelectorAll(attrSelector)
+        attrValue = element.getAttribute attrName
+        continue unless attrValue
+        element.removeAttribute attrName
+        element.setAttribute doneAttrName, attrValue
+        new effectClass element, attrValue
+    null     
+  
+  # Registers a PwnFx effect.
+  #
+  # @param [String] attrName string following data-pwnfx- in the effect's
+  #                          attribute names
+  # @param klass the class that wraps the effect's implementation
+  registerEffect: (attrPrefix, klass) ->
+    if @effectsByName[attrPrefix]
+      raise "Effect name {attrPrefix} already registered"
+    @effects.push [attrPrefix, klass]
+  
+# Singleton instance.
+PwnFx = new PwnFxClass
+
+
+# Moves an element using data-pwnfx-move.
+class PwnFxMove
+  constructor: (element, identifier) ->
+    target = document.querySelector "[data-pwnfx-move-target=\"#{identifier}\"]"
+    target.appendChild element
+
+PwnFx.registerEffect 'data-pwnfx-move', PwnFxMove
+    
+    
+# Renders the contents of a template into a DOM element.
+#
+# Attributes:
+#   data-pwnfx-render: identifier for the render operation
+#   data-pwnfx-render-where: insertAdjacentHTML position argument; can be
+#       beforebegin, afterbegin, beforeend, afterend; defaults to beforeend
+#   data-pwnfx-render-randomize: regexp pattern whose matches will be replaced
+#       with a random string; useful for generating unique IDs
+#   data-pwnfx-render-target: set on the element(s) receiving the rendered HTML;
+#       set to the identifier in data-pwnfx-render 
+#   data-pwnfx-render-source: set on the <script> tag containing the source HTML
+#       to be rendered; set to the identifier in data-pwnfx-render
+class PwnFxRender
+  constructor: (element, identifier) ->
+    sourceSelector = "script[data-pwnfx-render-source=\"#{identifier}\"]"
+    targetSelector = "[data-pwnfx-render-target=\"#{identifier}\"]"
+    insertionPoint = element.getAttribute('data-pwnfx-render-where') ||
+                     'beforeend'
+    randomizedPatten = element.getAttribute('data-pwnfx-render-randomize')
+    if randomizedPatten
+      randomizeRegExp = new RegExp(randomizedPatten, 'g')
+    else
+      randomizeRegExp = null
+    
+    onClick = (event) ->
+      source = document.querySelector sourceSelector
+      html = source.innerHTML
+      if randomizeRegExp
+        randomId = 'r' + Date.now() + '_' + Math.random()
+        html = html.replace randomizeRegExp, randomId
+      for element in document.querySelectorAll(targetSelector)
+        element.insertAdjacentHTML insertionPoint, html
+      event.preventDefault()
+      false
+    element.addEventListener 'click', onClick
+
+PwnFx.registerEffect 'data-pwnfx-render', PwnFxRender
+
+
 # Fires off an AJAX request (almost) every time when an element changes.
 #
 # The text / HTML returned by the request is placed in another element.
@@ -64,7 +155,10 @@ class PwnFxRefresh
       return element if element.nodeName == 'FORM'
       element = element.parentNode
     null
-    
+
+PwnFx.registerEffect 'data-pwnfx-refresh-url', PwnFxRefresh
+
+
 # Shows elements conditionally, depending on whether some inputs' values match.
 #
 # Element attributes:
@@ -103,39 +197,8 @@ class PwnFxConfirm
     element.addEventListener 'change', onChange
     element.addEventListener 'keydown', onChange
     element.addEventListener 'keyup', onChange
-        
-# Moves an element using data-pwnfx-move.
-class PwnFxMove
-  constructor: (element, identifier) ->
-    targetSelector = 
-    target = document.querySelector "[data-pwnfx-move-target=\"#{identifier}\"]"
-    target.appendChild element
-    
-# Renders the contents of a template into a DOM element.
-#
-# Attributes:
-#   data-pwnfx-render: identifier for the render operation
-#   data-pwnfx-render-where: insertAdjacentHTML position argument; can be
-#       beforebegin, afterbegin, beforeend, afterend; defaults to beforeend
-#   data-pwnfx-render-target: set on the element(s) receiving the rendered HTML;
-#       set to the identifier in data-pwnfx-render 
-#   data-pwnfx-render-source: set on the <script> tag containing the source HTML
-#       to be rendered; set to the identifier in data-pwnfx-render
-class PwnFxRender
-  constructor: (element, identifier) ->
-    sourceSelector = "script[data-pwnfx-render-source=\"#{identifier}\"]"
-    targetSelector = "[data-pwnfx-render-target=\"#{identifier}\"]"
-    insertionPoint = element.getAttribute('data-pwnfx-render-where') ||
-                     'beforeend'
-    
-    onClick = (event) ->
-      source = document.querySelector sourceSelector
-      html = source.innerHTML
-      for element in document.querySelectorAll(targetSelector)
-        element.insertAdjacentHTML insertionPoint, html
-      event.preventDefault()
-      false
-    element.addEventListener 'click', onClick
+
+PwnFx.registerEffect 'data-pwnfx-confirm', PwnFxConfirm
 
 
 # Shows / hides elements when an element is clicked or checked / unchecked.
@@ -177,33 +240,11 @@ class PwnFxReveal
       element.addEventListener 'change', onChange
       onChange()
 
+PwnFx.registerEffect 'data-pwnfx-reveal', PwnFxReveal
 
-# List of effects.
-pwnEffects = [
-  ['data-pwnfx-move', PwnFxMove],
-  ['data-pwnfx-render', PwnFxRender],
-  ['data-pwnfx-refresh-url', PwnFxRefresh],
-  ['data-pwnfx-confirm', PwnFxConfirm],
-  ['data-pwnfx-reveal', PwnFxReveal]
-]
 
-# Wires JS to elements with data-pwnfx attributes.
-#
-# @param [DOMElement] root the element whose content is wired; use document at
-#                          load time
-window.PwnFx = (root) ->
-  for effect in pwnEffects
-    attrName = effect[0]
-    effectClass = effect[1]
-    doneAttrName = "#{attrName}-done"
-    attrSelector = "[#{attrName}]"
-    for element in document.querySelectorAll(attrSelector)
-      attrValue = element.getAttribute attrName
-      continue unless attrValue
-      element.removeAttribute attrName
-      element.setAttribute doneAttrName, attrValue
-      new effectClass element, attrValue
-  null
+# Export the PwnFx instance.
+window.PwnFx = PwnFx
 
-# Honor data-pwnfx attributes after the DOM is loaded.
-window.addEventListener 'load', -> window.PwnFx(document)
+# Wire up the entire DOM after the document is loaded.
+window.addEventListener 'load', -> PwnFx.wire(document)
