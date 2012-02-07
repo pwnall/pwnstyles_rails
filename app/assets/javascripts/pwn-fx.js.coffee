@@ -85,6 +85,18 @@ class PwnFxClass
     else
       scope.querySelectorAll selector
   
+  # Executes the JavaScript inside <script>s in a DOM subtree.
+  #
+  # @param [Element] element the DOM element rooting the subtree that will be
+  #                          searched for <script>
+  runScripts: (element) ->
+    # HACK: <script>s are removed and re-inserted so the browser runs them
+    for scriptElement in element.querySelectorAll('script')
+      parent = scriptElement.parentElement
+      nextSibling = scriptElement.nextSibling
+      parent.removeChild scriptElement
+      parent.insertBefore scriptElement.cloneNode(true), nextSibling
+    null
   
 # Singleton instance.
 PwnFx = new PwnFxClass
@@ -169,12 +181,7 @@ class PwnFxRefresh
       scope = PwnFx.resolveScope scopeId, element
       for targetElement in PwnFx.queryScope(scope, targetSelector)
         targetElement.innerHTML = data
-        # HACK: <script>s are removed and re-inserted so the browser runs them
-        for scriptElement in targetElement.querySelectorAll('script')
-          parent = scriptElement.parentElement
-          nextSibling = scriptElement.nextSibling
-          parent.removeChild scriptElement
-          parent.insertBefore scriptElement.cloneNode(true), nextSibling        
+        PwnFx.runScripts targetElement
         PwnFx.wire targetElement
             
     refreshPending = false
