@@ -18,7 +18,7 @@ class PwnFxClass
   
   # Wires JS to elements with data-pwnfx attributes.
   #
-  # @param [Element] root the element whose content is wired; use document at
+  # @param {Element} root the element whose content is wired; use document at
   #                       load time
   wire: (root) ->
     for effect in @effects
@@ -38,7 +38,7 @@ class PwnFxClass
   
   # Registers a PwnFx effect.
   #
-  # @param [String] attrName string following data-pwnfx- in the effect's
+  # @param {String} attrName string following data-pwnfx- in the effect's
   #                          attribute names
   # @param klass the class that wraps the effect's implementation
   registerEffect: (attrPrefix, klass) ->
@@ -48,9 +48,9 @@ class PwnFxClass
   
   # Finds a scoping container.
   #
-  # @param [String] scopeId the scope ID to look for
-  # @param [Element] element the element where the lookup starts
-  # @return [Element] the closest parent of the given element whose
+  # @param {String} scopeId the scope ID to look for
+  # @param {HTMLElement} element the element where the lookup starts
+  # @return {HTMLElement} the closest parent of the given element whose
   #     data-pwnfx-scope matches the scopeId argument; window.document is
   #     returned if no such element exists or if scope is null
   resolveScope: (scopeId, element) ->
@@ -61,9 +61,9 @@ class PwnFxClass
   
   # Performs a scoped querySelectAll.
   #
-  # @param [Element] scope the DOM element serving as the search scope
-  # @param [String] selector the CSS selector to query
-  # @return [NodeList, Array] the elements in the scope that match the CSS
+  # @param {HTMLElement} scope the DOM element serving as the search scope
+  # @param {String} selector the CSS selector to query
+  # @return {NodeList, Array} the elements in the scope that match the CSS
   #     selector; the scope container can belong to the returned array
   queryScope: (scope, selector) ->
     scopeMatches = false
@@ -85,10 +85,10 @@ class PwnFxClass
     else
       scope.querySelectorAll selector
   
-  # Executes the JavaScript inside <script>s in a DOM subtree.
+  # Executes the JavaScript inside the <script> tags in a DOM subtree.
   #
-  # @param [Element] element the DOM element rooting the subtree that will be
-  #                          searched for <script>
+  # @param {HTMLElement} element the DOM element rooting the subtree that will
+  #                              be searched for <script> tags
   runScripts: (element) ->
     # HACK: <script>s are removed and re-inserted so the browser runs them
     for scriptElement in element.querySelectorAll('script')
@@ -97,6 +97,26 @@ class PwnFxClass
       parent.removeChild scriptElement
       parent.insertBefore scriptElement.cloneNode(true), nextSibling
     null
+  
+  # Do AJAX.
+  #
+  # @param {String} url the request URL (e.g., "http://localhost/path/to.html")
+  # @param {String} method the request method (e.g., "POST")
+  # @param [HTMLFormElement] form the DOM form whose data will be submitted
+  # @param [function(data)] onData callback that receives the XHR data, if the
+  #                                XHR completes successfully
+  xhr: (url, method, form, onData) ->
+    xhr = new XMLHttpRequest
+    xhr.onload = @_xhr_onload
+    xhr.pwnfxOnData = onData
+    xhr.open xhrMethod, xhrUrl
+    xhr.send new FormData(xhrForm)    
+  
+  # Called when an XHR request issued by PwnFx.xhr works out.
+  _xhr_onload: ->
+    if @status < 200 || @status >= 300
+      throw new Error("XHR result ignored due to HTTP status: #{@statusText}")
+    @pwnfxOnData @responseText
   
 # Singleton instance.
 PwnFx = new PwnFxClass
@@ -176,8 +196,7 @@ class PwnFxRefresh
     xhrMethod = element.getAttribute('data-pwnfx-refresh-method') || 'POST'
     xhrForm = @parentForm element
     
-    onXhrSuccess = ->
-      data = @responseText
+    onXhrData = (data) ->
       scope = PwnFx.resolveScope scopeId, element
       for targetElement in PwnFx.queryScope(scope, targetSelector)
         targetElement.innerHTML = data
@@ -188,10 +207,7 @@ class PwnFxRefresh
     refreshOldValue = null
     ajaxRefresh = ->
       refreshPending = false
-      xhr = new XMLHttpRequest
-      xhr.onload = onXhrSuccess
-      xhr.open xhrMethod, xhrUrl
-      xhr.send new FormData(xhrForm)
+      PwnFx.xhr xhrUrl, xhrMethod, xhrForm, onXhrData
       
     onChange = ->
       value = element.value
