@@ -186,8 +186,8 @@ PwnFx.registerEffect 'move', PwnFxMove
 #       with a random string; useful for generating unique IDs
 #   data-pwnfx-render-target: set on the element(s) receiving the rendered HTML;
 #       set to the identifier in data-pwnfx-render 
-#   data-pwnfx-render-source: set on the <script> tag containing the source HTML
-#       to be rendered; set to the identifier in data-pwnfx-render
+#   data-pwnfx-render-source: set to the identifier in data-pwnfx-render, on the
+#       <script> tag containing the source HTML 
 class PwnFxRender
   constructor: (element, identifier, scopeId) ->
     sourceSelector = "script[data-pwnfx-render-source=\"#{identifier}\"]"
@@ -391,6 +391,46 @@ class PwnFxHide
       throw new Error("Unimplemented pwnfx-hide trigger #{trigger}")
 
 PwnFx.registerEffect 'hide', PwnFxHide
+
+
+# Shows / hides elements in a DOM depending on an input's value.
+#
+# Attributes:
+#   data-pwnfx-showif: an identifier that connects the source <input>
+#   data-pwnfx-showif-class: the CSS class that is added to hidden elements;
+#       (default: hidden)
+#   data-pwnfx-showif-is: the value that the <input> has to match for this
+#       element to be shown
+#   data-pwnfx-showif-source: set to the identifier in data-pwnfx-showif
+#       on the <input> whose value determines if this element is shown or not
+class PwnFxShowIf
+  constructor: (element, identifier, scopeId) ->
+    hiddenClass = element.getAttribute('data-pwnfx-showif-class') || 'hidden'
+    showValue = element.getAttribute 'data-pwnfx-showif-is'
+    sourceSelector = "[data-pwnfx-showif-source=\"#{identifier}\"]"    
+    
+    oldValue = null
+    onChange = (event) ->
+      console.log ['change', event.target]
+      value = event.target.value
+      return true if value == oldValue
+      oldValue = value
+      
+      console.log [value, showValue]
+      if value == showValue
+        element.classList.remove hiddenClass
+      else
+        element.classList.add hiddenClass
+      true
+
+    scope = PwnFx.resolveScope scopeId, element
+    for sourceElement in PwnFx.queryScope(scope, sourceSelector)
+      sourceElement.addEventListener 'change', onChange, false
+      sourceElement.addEventListener 'keydown', onChange, false
+      sourceElement.addEventListener 'keyup', onChange, false
+      onChange target: sourceElement
+
+PwnFx.registerEffect 'showif', PwnFxShowIf
 
 
 # Removes elements from the DOM when an element is clicked.
