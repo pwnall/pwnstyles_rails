@@ -43,7 +43,7 @@ class PwnFxClass
   # @param klass the class that wraps the effect's implementation
   registerEffect: (attrPrefix, klass) ->
     if @effectsByName[attrPrefix]
-      throw new Error("Effect name {attrPrefix} already registered")
+      throw new Error("PwnFx effect name {attrPrefix} already registered")
     @effects.push [attrPrefix, klass]
   
   # Finds a scoping container.
@@ -98,6 +98,28 @@ class PwnFxClass
       parent.insertBefore scriptElement.cloneNode(true), nextSibling
     null
   
+  # Replaces an element's contents with some HTML.
+  #
+  # The JavaScript inside the HTML's <script> tags will be executed. 
+  #
+  # @param {HTMLElement} element the element whose contents will be replaced
+  # @param {String}
+  replaceHtml: (element, html) ->
+    element.innerHTML = html
+    @runScripts element
+    @wire element
+
+  # The closest form element wrapping a node.
+  #
+  # @param {HTMLElement} element the element whose parent chain will be searched
+  # @return {HTMLFormElement} the element's closest parent form, or null if the
+  #     element is not wrapped in a <form>
+  parentForm: (element) ->
+    while element
+      return element if element.nodeName == 'FORM'
+      element = element.parentNode
+    null
+  
   # Do AJAX.
   #
   # @param {String} url the request URL (e.g., "http://localhost/path/to.html")
@@ -109,8 +131,12 @@ class PwnFxClass
     xhr = new XMLHttpRequest
     xhr.onload = @_xhr_onload
     xhr.pwnfxOnData = onData
-    xhr.open xhrMethod, xhrUrl
-    xhr.send new FormData(xhrForm)    
+    xhr.open method, url
+    xhr.setRequestHeader 'X-Requested-With', 'XMLHttpRequest'
+    if form
+      xhr.send new FormData(form)
+    else
+      xhr.send null
   
   # Called when an XHR request issued by PwnFx.xhr works out.
   _xhr_onload: ->
@@ -128,11 +154,24 @@ PwnFx = new PwnFxClass
 #   data-pwnfx-move: an identifier connecting the move's target element
 #   data-pwnfx-move-target: set to the same value as data-pwnfx-move on the
 #       element that will receive the moved element as its last child
+#   data-pwnfx-move-method: 'append' adds the moved as the element as the
+#       target's last child, 'replace' clears the target element, then adds the
+#       moved element as the target's only child
 class PwnFxMove
   constructor: (element, identifier, scopeId) ->
     scope = PwnFx.resolveScope scopeId, element
+    method = element.getAttribute('data-pwnfx-move-method') || 'append'
     target = document.querySelector "[data-pwnfx-move-target=\"#{identifier}\"]"
-    target.appendChild element
+     
+    switch method
+      when 'append'
+        target.appendChild element
+      when 'replace'
+        target.innerHTML = ''
+        target.appendChild element
+      else
+        throw new Error("pwnfx-move-method #{method} not implemented")
+  
 
 PwnFx.registerEffect 'move', PwnFxMove
     
@@ -178,35 +217,70 @@ class PwnFxRender
 PwnFx.registerEffect 'render', PwnFxRender
 
 
-# Fires off an AJAX request (almost) every time when an element changes.
+# Loads some content after the main page load via an AJAX request. 
 #
-# The text / HTML returned by the request is placed in another element.
+# The text / HTML returned by the request is placed in another element. Scripts
+# in <script> tags are executed.
 #
 # Element attributes:
-#   data-pwnfx-refresh: URL to perform an AJAX request to
+#   data-pwnfx-delayed: identifier connecting the AJAX data receiver
+#   data-pwnfx-delayed-url: URL to perform an AJAX request to
+#   data-pwnfx-delayed-method: the HTTP method of AJAX request (default: POST)
+#   data-pwnfx-delayed-ms: the delay between the page load and the issuing of
+#                          the AJAX request (default: 1000ms)
+#   data-pwnfx-delayed-target: set to the value of data-pwnfx-delayed on the
+#                              element populated with the AJAX response
+class PwnFxDelayed
+  constructor: (element, identifier, scopeId) ->
+    targetSelector = "[data-pwnfx-delayed-target=\"#{identifier}\"]"
+    xhrUrl = element.getAttribute('data-pwnfx-delayed-url')
+    xhrMethod = element.getAttribute('data-pwnfx-delayed-method') || 'POST'
+    xhrForm = PwnFx.parentForm element
+    delay = parseInt(
+        element.getAttribute('data-pwnfx-delayed-ms') || '1000');
+
+    ajaxLoad = ->
+      PwnFx.xhr xhrUrl, xhrMethod, xhrForm, (data) ->
+        scope = PwnFx.resolveScope scopeId, element
+        for targetElement in PwnFx.queryScope(scope, targetSelector)
+          PwnFx.replaceHtml targetElement, data
+          
+    window.setTimeout ajaxLoad, delay
+
+PwnFx.registerEffect 'delayed', PwnFxDelayed
+
+
+# Fires off an AJAX request (almost) every time when an element changes.
+#
+# The text / HTML returned by the request is placed in another element. Scripts
+# in <script> tags are executed.
+#
+# Element attributes:
+#   data-pwnfx-refresh: identifier connecting the AJAX data receiver
+#   data-pwnfx-refresh-url: URL to perform an AJAX request to
 #   data-pwnfx-refresh-method: the HTTP method of AJAX request (default: POST)
-#   data-pwnfx-refresh-ms: interval between a change on the source element and
+#   data-pwnfx-refresh-ms: delay between a change on the source element and
 #                          AJAX refresh requests (default: 200ms)
-#   data-pwnfx-target: the element populated with the AJAX response
+#   data-pwnfx-refresh-target: set to the value of data-pwnfx-refresh on the
+#                              element populated with the AJAX response
 class PwnFxRefresh
-  constructor: (element, xhrUrl, scopeId) ->
-    targetSelector = '#' + element.getAttribute('data-pwnfx-refresh-target') 
-    refreshInterval = parseInt(
-        element.getAttribute('data-pwnfx-refresh-ms') || '200');
+  constructor: (element, identifier, scopeId) ->
+    targetSelector = "[data-pwnfx-refresh-target=\"#{identifier}\"]"
+    xhrUrl = element.getAttribute('data-pwnfx-refresh-url')
     xhrMethod = element.getAttribute('data-pwnfx-refresh-method') || 'POST'
-    xhrForm = @parentForm element
+    xhrForm = PwnFx.parentForm element
+    refreshDelay = parseInt(
+        element.getAttribute('data-pwnfx-refresh-ms') || '200');
     
     onXhrData = (data) ->
       scope = PwnFx.resolveScope scopeId, element
       for targetElement in PwnFx.queryScope(scope, targetSelector)
-        targetElement.innerHTML = data
-        PwnFx.runScripts targetElement
-        PwnFx.wire targetElement
+        PwnFx.replaceHtml targetElement, data
             
-    refreshPending = false
+    changeTimeout = null
     refreshOldValue = null
     ajaxRefresh = ->
-      refreshPending = false
+      changeTimeout = null
       PwnFx.xhr xhrUrl, xhrMethod, xhrForm, onXhrData
       
     onChange = ->
@@ -214,23 +288,14 @@ class PwnFxRefresh
       return true if value == refreshOldValue
       refreshOldValue = value
       
-      return true if refreshPending
-      refreshPending = true
-      window.setTimeout ajaxRefresh, refreshInterval
+      window.clearTimeout changeTimeout if changeTimeout != null
+      changeTimeout = window.setTimeout ajaxRefresh, refreshDelay
       true
       
     element.addEventListener 'change', onChange, false
     element.addEventListener 'keydown', onChange, false
     element.addEventListener 'keyup', onChange, false
     
-    
-  # The closest form element wrapping a node.
-  parentForm: (element) ->
-    while element
-      return element if element.nodeName == 'FORM'
-      element = element.parentNode
-    null
-
 PwnFx.registerEffect 'refresh', PwnFxRefresh
 
 
@@ -323,7 +388,7 @@ class PwnFxHide
       element.addEventListener 'change', onChange, false
       onChange()
     else
-      throw new Error("Unimplemented trigger #{trigger}")
+      throw new Error("Unimplemented pwnfx-hide trigger #{trigger}")
 
 PwnFx.registerEffect 'hide', PwnFxHide
 
