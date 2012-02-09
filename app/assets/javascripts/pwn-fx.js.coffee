@@ -397,6 +397,8 @@ PwnFx.registerEffect 'hide', PwnFxHide
 #
 # Attributes:
 #   data-pwnfx-showif: an identifier that connects the source <input>
+#   data-pwnfx-showif-replace: the name of a tag that will be used to replace
+#       the hidden element (default: don't replace the hidden element)
 #   data-pwnfx-showif-class: the CSS class that is added to hidden elements;
 #       (default: hidden)
 #   data-pwnfx-showif-is: the value that the <input> has to match for this
@@ -407,20 +409,32 @@ class PwnFxShowIf
   constructor: (element, identifier, scopeId) ->
     hiddenClass = element.getAttribute('data-pwnfx-showif-class') || 'hidden'
     showValue = element.getAttribute 'data-pwnfx-showif-is'
-    sourceSelector = "[data-pwnfx-showif-source=\"#{identifier}\"]"    
+    sourceSelector = "[data-pwnfx-showif-source=\"#{identifier}\"]"
     
-    oldValue = null
+    replacementTag = element.getAttribute 'data-pwnfx-showif-replace'
+    if replacementTag
+      replacement = document.createElement replacementTag
+      replacement.setAttribute 'class', hiddenClass
+    else
+      replacement = null
+    
+    isHidden = false
     onChange = (event) ->
-      console.log ['change', event.target]
       value = event.target.value
-      return true if value == oldValue
-      oldValue = value
+      willHide = value != showValue
+      return if isHidden == willHide
+      isHidden = willHide
       
-      console.log [value, showValue]
-      if value == showValue
-        element.classList.remove hiddenClass
+      if replacement
+        if willHide
+          element.parentElement.replaceChild replacement, element
+        else
+          replacement.parentElement.replaceChild element, replacement
       else
-        element.classList.add hiddenClass
+        if willHide
+          element.classList.add hiddenClass
+        else
+          element.classList.remove hiddenClass
       true
 
     scope = PwnFx.resolveScope scopeId, element
