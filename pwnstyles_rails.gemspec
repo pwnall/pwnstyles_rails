@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "pwnstyles_rails"
-  s.version = "0.1.11"
+  s.version = "0.1.12"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Victor Costan"]
-  s.date = "2012-02-09"
+  s.date = "2012-02-11"
   s.description = "Included CSS was designed for reuse across pwnb.us apps."
   s.email = "victor@costan.us"
   s.extra_rdoc_files = [
@@ -27,9 +27,10 @@ Gem::Specification.new do |s|
     "VERSION",
     "app/assets/javascripts/pwn-fx.js.coffee",
     "app/assets/stylesheets/_pwnstyles.css.scss",
-    "app/assets/stylesheets/generic/_controls.css.scss",
+    "app/assets/stylesheets/generic/_buttons.css.scss",
     "app/assets/stylesheets/generic/_forms.css.scss",
     "app/assets/stylesheets/generic/_images.css.scss",
+    "app/assets/stylesheets/generic/_inputs.css.scss",
     "app/assets/stylesheets/generic/_links.css.scss",
     "app/assets/stylesheets/generic/_lists.css.scss",
     "app/assets/stylesheets/generic/_menu.css.scss",
@@ -62,7 +63,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/pwnall/pwnstyles_rails"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.15"
+  s.rubygems_version = "1.8.16"
   s.summary = "Rails 3 SCSS integration and non-trivial default style."
 
   if s.respond_to? :specification_version then
