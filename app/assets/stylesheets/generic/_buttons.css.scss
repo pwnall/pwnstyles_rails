@@ -8,7 +8,6 @@ input[type=submit], input[type=button], button, a.button {
     border-color: $color-button-border-color;
   }
   
-
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
@@ -16,6 +15,7 @@ input[type=submit], input[type=button], button, a.button {
   color: $button-font-color;
   &.emphasized {
     color: $color-button-font-color;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.1);
   }
   font-size: 1.21em;
   line-height: 1.35em;
@@ -37,14 +37,24 @@ input[type=submit], input[type=button], button, a.button {
         to(lighten($color-button-color, 1%))); 
   }
   
+  -webkit-transition: all .218s;
+  -moz-transition: all .218s;
+  transition: all .218s;  
+  
   img {
     -webkit-filter: grayscale(0.66);
+  }
+  &.emphasized {
+    img {
+      -webkit-filter: brightness(-0.2);
+    }
   }
   
   &:visited {
     color: $button-font-color;
-    background-color: $button-color;
-    border-color: $button-border-color;
+    &.emphasized {
+      color: $color-button-font-color;
+    }
   }
 
   &:hover {
@@ -57,21 +67,26 @@ input[type=submit], input[type=button], button, a.button {
     }
     
     background: -webkit-gradient(linear, 0% 40%, 0% 70%,
-        from(darken($button-color, 1%)), to(lighten($button-color, 4%)));
+        from(darken($button-color, 1%)), to(lighten($button-color, 2%)));
     background: -moz-gradient(linear, 0% 40%, 0% 70%,
-        from(darken($button-color, 1%)), to(lighten($button-color, 4%)));     
+        from(darken($button-color, 1%)), to(lighten($button-color, 2%)));     
     &.emphasized {
       background: -webkit-gradient(linear, 0% 40%, 0% 70%,
-          from(darken($color-button-color, 2%)),
-          to(lighten($color-button-color, 1%)));
+          from(darken($color-button-color, 1%)),
+          to(lighten($color-button-color, 2%)));
       background: -moz-gradient(linear, 0% 40%, 0% 70%,
-          from(darken($color-button-color, 2%)),
-          to(lighten($color-button-color, 1%)));     
+          from(darken($color-button-color, 1%)),
+          to(lighten($color-button-color, 2%)));     
     }
     
     img {
       -webkit-filter: grayscale(0.33);
     }
+    &.emphasized {
+      img {
+        -webkit-filter: brightness(-0.1);
+      }
+    }    
   }
   &:active {
     color: $button-active-font-color;
@@ -95,5 +110,10 @@ input[type=submit], input[type=button], button, a.button {
     img {
       -webkit-filter: grayscale(0);
     }
+    &.emphasized {
+      img {
+        -webkit-filter: brightness(0);
+      }
+    }    
   }
 }

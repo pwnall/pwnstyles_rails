@@ -44,41 +44,47 @@ $button-active-border-color: change-color($button-base-color, $lightness: 78%)
 
 $color-button-base-color: $main-color1 !default;
 $color-button-color: change-color($color-button-base-color,
-                     $lightness: 28%) !default;
+                     $lightness: 36%) !default;
 $color-button-font-color: change-color($color-button-base-color,
                           $saturation: 0%, $lightness: 100%) !default;
 $color-button-border-color: change-color($color-button-base-color,
-                            $saturation: 57%, $lightness: 26%) !default;
+                            $saturation: 57%, $lightness: 32%) !default;
 $color-button-hover-font-color: $color-button-font-color !default;
 $color-button-hover-border-color: change-color($color-button-base-color,
-                                  $lightness: 19%) !default;
+                                  $lightness: 22%) !default;
 $color-button-active-font-color: $color-button-font-color !default;
 $color-button-active-border-color: change-color($color-button-base-color,
-                                   $lightness: 19%) !default;
+                                   $lightness: 22%) !default;
 
 
 // Input fields.
 $input-base-color: $main-color1 !default;
-$input-border-color: change-color($input-base-color,
-    $saturation: 5%, $lightness: 85%) !default;
-$input-border-top-color: change-color($input-base-color,
-    $saturation: 5%, $lightness: 75%) !default;
 $input-background-color: change-color($input-base-color,
-    $saturation: 66%, $lightness: 99%) !default;
+                         $saturation: 66%, $lightness: 99%) !default;
+$input-font-color: change-color($input-base-color,
+                   $saturation: 5%, $lightness: 0%) !default;
+$input-placeholder-font-color: change-color($input-base-color,
+                               $saturation: 5%, $lightness: 55%) !default;
+
+$input-border-color: change-color($input-base-color,
+                     $saturation: 5%, $lightness: 85%) !default;
+$input-border-top-color: change-color($input-base-color,
+                         $saturation: 5%, $lightness: 75%) !default;
 $input-hover-border-color: change-color($input-base-color,
-    $saturation: 5%, $lightness: 66%) !default;
+                           $saturation: 5%, $lightness: 66%) !default;
 $input-hover-shadow-color: change-color($input-base-color,
-    $saturation: 5%, $lightness: 88%) !default;
+                           $saturation: 5%, $lightness: 88%) !default;
 $input-focus-border-color: change-color($input-base-color,
-    $saturation: 100%, $lightness: 33%) !default;
+                           $saturation: 100%, $lightness: 33%) !default;
 $input-focus-shadow-color: change-color($input-base-color,
-    $saturation: 66%, $lightness: 88%) !default;
+                           $saturation: 66%, $lightness: 88%) !default;
 
-$menu-hover-color: change-color($main-color1,
-    $saturation: 66%, $lightness: 76%) !default;
+$menu-hover-color: change-color($main-color1, $saturation: 66%, $lightness: 76%)
+                   !default;
 
-$link-color: change-color($main-color1,
-    $saturation: 66%, $lightness: 16%) !default;
+$link-color: change-color($main-color1, $saturation: 66%, $lightness: 16%)
+             !default;
+
 
 // Text.
 $heading-main-color: change-color($main-color1, $saturation: 50%) !default;

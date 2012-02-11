@@ -141,7 +141,8 @@ class PwnFxClass
   # Called when an XHR request issued by PwnFx.xhr works out.
   _xhr_onload: ->
     if @status < 200 || @status >= 300
-      throw new Error("XHR result ignored due to HTTP status: #{@statusText}")
+      throw new Error(
+          "XHR result ignored due to HTTP #{@status}: #{@statusText}")
     @pwnfxOnData @responseText
   
 # Singleton instance.
