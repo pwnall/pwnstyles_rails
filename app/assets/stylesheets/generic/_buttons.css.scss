@@ -1,0 +1,99 @@
+input[type=submit], input[type=button], button, a.button {
+  display: inline-block;
+
+  margin: 0;
+  padding: 0.1em 1ex;
+  border: 1px solid $button-border-color;
+  &.emphasized {
+    border-color: $color-button-border-color;
+  }
+  
+
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  
+  color: $button-font-color;
+  &.emphasized {
+    color: $color-button-font-color;
+  }
+  font-size: 1.21em;
+  line-height: 1.35em;
+  text-decoration: none;
+  text-overflow: ellipsis;  
+  
+  background-color: $button-color;
+  background: -webkit-gradient(linear, 0% 40%, 0% 70%,
+      from(darken($button-color, 1%)), to(lighten($button-color, 1%)));
+  background: -moz-gradient(linear, 0% 40%, 0% 70%,
+      from(darken($button-color, 1%)), to(lighten($button-color, 1%))); 
+  &.emphasized {
+    background-color: $color-button-color;
+    background: -webkit-gradient(linear, 0% 40%, 0% 70%,
+        from(darken($color-button-color, 1%)),
+        to(lighten($color-button-color, 1%)));
+    background: -moz-gradient(linear, 0% 40%, 0% 70%,
+        from(darken($color-button-color, 1%)),
+        to(lighten($color-button-color, 1%))); 
+  }
+  
+  img {
+    -webkit-filter: grayscale(0.66);
+  }
+  
+  &:visited {
+    color: $button-font-color;
+    background-color: $button-color;
+    border-color: $button-border-color;
+  }
+
+  &:hover {
+    color: $button-hover-font-color;
+    border-color: $button-hover-border-color;
+    &.emphasized {
+      color: $color-button-hover-font-color;
+      border-color: $color-button-hover-border-color;
+      text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+    }
+    
+    background: -webkit-gradient(linear, 0% 40%, 0% 70%,
+        from(darken($button-color, 1%)), to(lighten($button-color, 4%)));
+    background: -moz-gradient(linear, 0% 40%, 0% 70%,
+        from(darken($button-color, 1%)), to(lighten($button-color, 4%)));     
+    &.emphasized {
+      background: -webkit-gradient(linear, 0% 40%, 0% 70%,
+          from(darken($color-button-color, 2%)),
+          to(lighten($color-button-color, 1%)));
+      background: -moz-gradient(linear, 0% 40%, 0% 70%,
+          from(darken($color-button-color, 2%)),
+          to(lighten($color-button-color, 1%)));     
+    }
+    
+    img {
+      -webkit-filter: grayscale(0.33);
+    }
+  }
+  &:active {
+    color: $button-active-font-color;
+    border-color: $button-active-border-color;
+    &.emphasized {
+      color: $color-button-active-font-color;
+      border-color: $color-button-active-border-color;      
+    }
+    
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    &.emphasized {
+      text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+      
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+      -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);      
+    }
+
+    img {
+      -webkit-filter: grayscale(0);
+    }
+  }
+}
