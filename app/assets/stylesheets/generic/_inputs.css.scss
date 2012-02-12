@@ -1,13 +1,13 @@
 // Text fields.
 input[type=text], input[type=email], input[type=tel], input[type=password],
-    input[type=search], input[type=number], textarea {
+    input[type=search], input[type=number], textarea, select {
   margin: 0;
   padding: 0.1em 0.5ex;
   border: 1px solid $input-border-color;
   border-top-color: $input-border-top-color;
   
-  -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
   border-radius: 2px;
 
   color: $input-font-color;
@@ -72,10 +72,16 @@ input[type=radio], input[type=checkbox] {
   }  
 }
 
+// Drop-downs.
+select {
+  padding: 0 0.25ex;
+  text-overflow: ellipsis;
+}
+
 // Error highlighting.
 .field_with_errors {
   input[type=text], input[type=email], input[type=tel], input[type=password],
-      input[type=search], input[type=number], textarea {
+      input[type=search], input[type=number], select, textarea {
     border: 1px solid #FF0000;
     box-shadow: inset 0px 1px 2px #FF8888;
     -moz-box-shadow: inset 0px 1px 2px #FF8888;
