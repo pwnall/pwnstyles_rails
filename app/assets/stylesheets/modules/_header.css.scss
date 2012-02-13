@@ -1,6 +1,6 @@
 header {
   background-color: $header-background-color;
-  border-bottom: 1px solid $header-border-color;
+  border-bottom: 1px solid $header-border-color;  
 
   hgroup {
     width: $page-width;
@@ -55,7 +55,10 @@ header {
     height: 100%;
   }
   nav > ol {
-    @include menu-list($menu-hover-color, $last-item-right: true);
+    @include menu-list($hover-color: $header-menu-hover-color,
+                       $hover-text-color: $header-menu-hover-text-color,
+                       $border-color: $header-border-color,
+                       $last-item-right: true);
     background-color: $header-background-color;
 
     font-size: $header-menu-font-size;

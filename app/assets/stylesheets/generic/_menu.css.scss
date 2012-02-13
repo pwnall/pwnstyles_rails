@@ -1,11 +1,12 @@
 // Include in an ul or ol to make it a two-level menu.
-@mixin menu-list($hover-color: $menu-hover-color, $last-item-right: false) {
+@mixin menu-list($hover-color, $hover-text-color, $border-color,
+                 $last-item-right: false) {
   list-style: none;
   
   // Note: using nth-child(n) to get a more specific selector than the 
   //       one for striped background in generic/_lists.css.scss 
   li:nth-child(n) {
-    background-color: inherit;    
+    background-color: inherit;
   }
   
   > li {
@@ -17,17 +18,25 @@
     > ol, > ul {
       display: none;
       background-color: inherit;
-      border: 1px solid $hover-color;
+      border: 1px solid $border-color;
       position: absolute;
       z-index: 5;
+      
+      -webkit-box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
+      -moz-box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
     }
   }
   > li:hover {
-    > a {
-      background-color: $hover-color;
-    }
     > ol, > ul {
       display: block;
+    }
+  }
+  li:hover > a {
+    background-color: $hover-color; 
+    color: $hover-text-color;
+    img {
+      -webkit-filter: grayscale(0);
     }
   }
 
@@ -36,9 +45,12 @@
     padding: 0 0.5em;
     text-decoration: none;
     color: inherit;
+    img {
+      -webkit-filter: grayscale(0.33);
+    }
   }
-  a:hover, a:active {
-    background-color: $hover-color;
+  a:visited {
+    color: inherit;
   }
   li > img {
     display: block;

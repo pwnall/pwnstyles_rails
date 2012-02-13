@@ -78,6 +78,15 @@ input[type=submit], input[type=button], button, a.button {
           from(darken($color-button-color, 1%)),
           to(lighten($color-button-color, 2%)));     
     }
+
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    &.emphasized {
+      -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);      
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
     
     img {
       -webkit-filter: grayscale(0.33);
@@ -96,15 +105,15 @@ input[type=submit], input[type=button], button, a.button {
       border-color: $color-button-active-border-color;      
     }
     
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
     &.emphasized {
       text-shadow: 0 1px rgba(0, 0, 0, 0.3);
       
-      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
       -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
       -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);      
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
     }
 
     img {

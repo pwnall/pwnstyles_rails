@@ -12,16 +12,21 @@ $main-color3: adjust-hue($main-color1, 360 / $colors) !default;
 $main-color4: adjust-hue($main-color1, 360 / $colors) !default;
 $main-color5: adjust-hue($main-color1, 360 / $colors) !default;
 
-// Modules.
+// Header.
 $header-background-color: change-color($main-color1,
-    $saturation: 66%, $lightness: 88%) !default;
+    $saturation: 10%, $lightness: 95%) !default;
 $header-border-color: change-color($main-color1,
-    $saturation: 66%, $lightness: 76%) !default;
+    $saturation: 10%, $lightness: 76%) !default;
 $header-title-color: change-color($main-color1,
     $saturation: 100%, $lightness: 1%) !default;
 $header-text-color: change-color($main-color1,
-    $saturation: 100%, $lightness: 20%) !default;
+    $saturation: 10%, $lightness: 21%) !default;
+$header-menu-hover-color: change-color($main-color1,
+    $saturation: 10%, $lightness: 86%) !default;
+$header-menu-hover-text-color: change-color($main-color1,
+    $saturation: 10%, $lightness: 0%) !default;
 
+// Footer.
 $footer-border-color: change-color($main-color1,
     $saturation: 66%, $lightness: 76%) !default;
 $footer-text-color: change-color($main-color1,
@@ -79,12 +84,8 @@ $input-focus-border-color: change-color($input-base-color,
 $input-focus-shadow-color: change-color($input-base-color,
                            $saturation: 66%, $lightness: 88%) !default;
 
-$menu-hover-color: change-color($main-color1, $saturation: 66%, $lightness: 76%)
-                   !default;
-
-$link-color: change-color($main-color1, $saturation: 66%, $lightness: 16%)
+$link-color: change-color($main-color1, $saturation: 60%, $lightness: 40%)
              !default;
-
 
 // Text.
 $heading-main-color: change-color($main-color1, $saturation: 50%) !default;
