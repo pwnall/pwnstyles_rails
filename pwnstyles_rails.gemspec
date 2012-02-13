@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "pwnstyles_rails"
-  s.version = "0.1.14"
+  s.version = "0.1.15"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Victor Costan"]
-  s.date = "2012-02-12"
+  s.date = "2012-02-13"
   s.description = "Included CSS was designed for reuse across pwnb.us apps."
   s.email = "victor@costan.us"
   s.extra_rdoc_files = [
