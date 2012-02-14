@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "pwnstyles_rails"
-  s.version = "0.1.15"
+  s.version = "0.1.16"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Victor Costan"]
-  s.date = "2012-02-13"
+  s.date = "2012-02-14"
   s.description = "Included CSS was designed for reuse across pwnb.us apps."
   s.email = "victor@costan.us"
   s.extra_rdoc_files = [
@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "app/assets/images/pwnstyles/select-arrow.svg",
     "app/assets/javascripts/pwn-fx.js.coffee",
     "app/assets/stylesheets/_pwnstyles.css.scss",
     "app/assets/stylesheets/generic/_buttons.css.scss",
