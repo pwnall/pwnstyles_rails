@@ -12,9 +12,9 @@ input[type=submit], input[type=button], button, a.button {
   -webkit-border-radius: 2px;
   border-radius: 2px;
   
-  color: $button-font-color;
+  color: $button-text-color;
   &.emphasized {
-    color: $color-button-font-color;
+    color: $color-button-text-color;
     text-shadow: 0 1px rgba(0, 0, 0, 0.1);
   }
   font-size: 1.21em;
@@ -51,17 +51,17 @@ input[type=submit], input[type=button], button, a.button {
   }
   
   &:visited {
-    color: $button-font-color;
+    color: $button-text-color;
     &.emphasized {
-      color: $color-button-font-color;
+      color: $color-button-text-color;
     }
   }
 
   &:hover {
-    color: $button-hover-font-color;
+    color: $button-hover-text-color;
     border-color: $button-hover-border-color;
     &.emphasized {
-      color: $color-button-hover-font-color;
+      color: $color-button-hover-text-color;
       border-color: $color-button-hover-border-color;
       text-shadow: 0 1px rgba(0, 0, 0, 0.3);
     }
@@ -98,10 +98,10 @@ input[type=submit], input[type=button], button, a.button {
     }    
   }
   &:active {
-    color: $button-active-font-color;
+    color: $button-active-text-color;
     border-color: $button-active-border-color;
     &.emphasized {
-      color: $color-button-active-font-color;
+      color: $color-button-active-text-color;
       border-color: $color-button-active-border-color;      
     }
     

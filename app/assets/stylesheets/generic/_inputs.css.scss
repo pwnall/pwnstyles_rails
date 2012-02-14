@@ -10,7 +10,7 @@ input[type=text], input[type=email], input[type=tel], input[type=password],
   -moz-border-radius: 2px;
   border-radius: 2px;
 
-  color: $input-font-color;
+  color: $input-text-color;
   font: inherit;
   line-height: inherit;
   text-decoration: none;
@@ -43,12 +43,12 @@ textarea {
 ::-webkit-input-placeholder {
   font: inherit;
   text-shadow: none;
-  color: $input-placeholder-font-color;
+  color: $input-placeholder-text-color;
 }
 :-moz-placeholder {
   font: inherit;
   text-shadow: none;
-  color: $input-placeholder-font-color;
+  color: $input-placeholder-text-color;
 }
 
 // Multiple-choice fields.
