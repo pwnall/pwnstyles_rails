@@ -109,3 +109,7 @@ $table-heading-text-color: change-color($main-color1,
     $saturation: 100%, $lightness: 25%) !default;
 $table-even-row-background-color: change-color($table-heading-text-color,
     $saturation: 60%, $lightness: 98%) !default;
+
+// Figures
+$figure-border-color: change-color($main-color1,
+    $saturation: 5%, $lightness: 95%) !default;
