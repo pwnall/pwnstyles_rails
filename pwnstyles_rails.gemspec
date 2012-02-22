@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Victor Costan"]
-  s.date = "2012-02-14"
+  s.date = "2012-02-22"
   s.description = "Included CSS was designed for reuse across pwnb.us apps."
   s.email = "victor@costan.us"
   s.extra_rdoc_files = [
@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
     "app/assets/javascripts/pwn-fx.js.coffee",
     "app/assets/stylesheets/_pwnstyles.css.scss",
     "app/assets/stylesheets/generic/_buttons.css.scss",
+    "app/assets/stylesheets/generic/_figures.css.scss",
     "app/assets/stylesheets/generic/_forms.css.scss",
     "app/assets/stylesheets/generic/_images.css.scss",
     "app/assets/stylesheets/generic/_inputs.css.scss",
