@@ -140,7 +140,7 @@ class PwnFxClass
   
   # Called when an XHR request issued by PwnFx.xhr works out.
   _xhr_onload: ->
-    if @status < 200 || @status >= 300
+    if (@status < 200 || @status >= 300) && (@status != 304)
       throw new Error(
           "XHR result ignored due to HTTP #{@status}: #{@statusText}")
     @pwnfxOnData @responseText
@@ -473,4 +473,12 @@ PwnFx.registerEffect 'remove', PwnFxRemove
 window.PwnFx = PwnFx
 
 # Wire up the entire DOM after the document is loaded.
-window.addEventListener 'load', -> PwnFx.wire(document)
+if document.readyState == 'loading'
+  loaded = false
+  document.addEventListener 'readystatechange', ->
+    return if loaded
+    if document.readyState != 'loading'
+      PwnFx.wire(document)
+      loaded = true
+else
+  PwnFx.wire document
