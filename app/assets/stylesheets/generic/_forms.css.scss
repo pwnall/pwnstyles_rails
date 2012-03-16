@@ -18,7 +18,7 @@ form {
   
       > * {
         display: table-cell;
-        vertical-align: baseline;
+        vertical-align: middle;
         margin: 0;
       }
       > label {
@@ -35,8 +35,10 @@ form {
         padding: 0 0 0 0.5em;
       }
       
-      input, textarea {
+      input, select, textarea {
         font-size: inherit;
+      }
+      input, select:first-child:last-child, textarea { 
         width: 100%;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
