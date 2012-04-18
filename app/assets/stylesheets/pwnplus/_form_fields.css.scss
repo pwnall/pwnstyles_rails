@@ -1,0 +1,139 @@
+// Make form fields look like Google Plus fields.
+@mixin pwnplus-text-input(
+    $border-color,
+    $text-color: inherit,
+    $background-color: inherit,
+    $hover-border-color: darken($border-color, 19%),
+    $hover-shadow-color: lighten($hover-border-color, 3%),
+    $focus-border-color: saturate(darken($border-color, 55%), 100%), 
+    $focus-shadow-color: desaturate(lighten($focus-border-color, 55%), 33%),
+    $placeholder-text-color: change-color($border-color, $saturation: 95%,
+                                                         $lightness: 55%)
+) {
+  margin: 0;
+  padding: 0.1em 0.5ex;
+  border: 1px solid $border-color;
+  border-top-color: darken($border-color, 10%);
+  
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+
+  color: $text-color;
+  font-size: inherit;
+  line-height: inherit;
+  text-decoration: none;
+    
+  background-color: $background-color;
+
+  -webkit-transition: all .218s;
+  -moz-transition: all .218s;
+  transition: all .218s;  
+
+  &:hover {
+    border-color: $hover-border-color;
+    border-top-color: darken($hover-border-color, 10%);
+
+
+    -moz-box-shadow: inset 0px 1px 2px $hover-shadow-color;
+    -webkit-box-shadow: inset 0px 1px 2px $hover-shadow-color;
+    box-shadow: inset 0px 1px 2px $hover-shadow-color;
+  }
+  &:focus {
+    border-color: $focus-border-color;
+    border-top-color: darken($focus-border-color, 10%);
+    outline: none;
+
+    -moz-box-shadow: inset 0px 1px 2px $focus-shadow-color;
+    -webkit-box-shadow: inset 0px 1px 2px $focus-shadow-color;
+    box-shadow: inset 0px 1px 2px $input-focus-shadow-color;
+  }
+
+  &::-webkit-input-placeholder {
+    font: inherit;
+    text-shadow: none;
+    color: $placeholder-text-color;
+  }
+  &:-moz-placeholder {
+    font: inherit;
+    text-shadow: none;
+    color: $placeholder-text-color;
+  }
+}
+
+// Google Plus-like stylng for box-like form fields (radio, checkbox).
+@mixin gplus-box-form-field(
+    $border-color,
+    $background-color: inherit,
+    $hover-border-color: darken($border-color, 19%),
+    $hover-shadow-color: lighten($hover-border-color, 3%),
+    $focus-border-color: saturate(darken($border-color, 55%), 100%), 
+    $focus-shadow-color: desaturate(lighten($focus-border-color, 55%), 33%)
+) {
+  border: 1px solid $border-color;
+  background-color: $background-color;
+
+  -webkit-transition: all .218s;
+  -moz-transition: all .218s;
+  transition: all .218s;  
+
+  &:hover {
+    border-color: $hover-border-color;
+    
+    box-shadow: inset 0px 1px 2px $hover-shadow-color;
+    -moz-box-shadow: inset 0px 1px 2px $hover-shadow-color;
+    -webkit-box-shadow: inset 0px 1px 2px $hover-shadow-color;
+  }
+  &:focus {
+    border-color: $focus-border-color;
+    outline: none;
+
+    -moz-box-shadow: inset 0px 1px 2px $focus-shadow-color;
+    -webkit-box-shadow: inset 0px 1px 2px $focus-shadow-color;
+    box-shadow: inset 0px 1px 2px $focus-shadow-color;
+  }  
+}
+
+@mixin gplus-form-select(
+    $border-color,
+    $text-color: inherit,
+    $background-color: inherit,
+    $hover-border-color: darken($border-color, 19%),
+    $hover-shadow-color: lighten($hover-border-color, 3%),
+    $focus-border-color: saturate(darken($border-color, 55%), 100%), 
+    $focus-shadow-color: desaturate(lighten($focus-border-color, 55%), 33%),
+    $placeholder-text-color: change-color($border-color, $saturation: 95%,
+                                                         $lightness: 55%)
+) {
+  @include gplus-text-input(
+    $border-color: $border-color,
+    $text-color: $text-color,
+    $background-color: $background-color,
+    $hover-border-color: $hover-border-color,
+    $hover-shadow-color: $hover-shadow-color,
+    $focus-border-color: $focus-border-color, 
+    $focus-shadow-color: $focus-shadow-color,
+    $placeholder-text-color: $placeholder-text-color
+  );
+  padding: 0.1em 2ex 0.1em 0.5ex;
+  text-overflow: ellipsis;
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  background: asset_data_url("pwnstyles/select-arrow.svg") no-repeat center
+              right;
+}
+
+// Import to highlight a form field to indicate errors in the input.
+@mixin gplus-form-field-error-highlighting(
+    $highlight-border: hsl(0deg, 100%, 50%),
+    $highlight-background: change-color($highlight-border, $lightness: 97%),
+    $highlight-shadow: lighten($highlight-border, 27%)
+) {
+  border-color: $highlight-color;
+  background-color: $highlight-background;
+
+  box-shadow: inset 0px 1px 2px $highlight-shadow;
+  -moz-box-shadow: inset 0px 1px 2px $highlight-shadow;
+  -webkit-box-shadow: inset 0px 1px 2px $highlight-shadow;
+}

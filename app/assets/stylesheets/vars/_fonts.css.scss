@@ -7,7 +7,7 @@
 // Standard text
 $main-font: Georgia, serif !default;
 $main-font-size: 11pt !default;
-$main-line-height: 1.2em !default;
+$main-line-height: 1.2 !default;
 
 // Headings.
 $heading-font: Helvetica, sans-serif !default;
@@ -26,5 +26,5 @@ $h6-font-size: $main-font-size * 1 !default;
 $h6-line-height: $main-line-height !default;
 
 // Header.
-$header-menu-font-size: 18px !default;
-$header-menu-line-height: 24px !default; 
+$header-menu-font-size: 14pt !default;
+$header-menu-line-height: 1.5 !default;

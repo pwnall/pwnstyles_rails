@@ -1,75 +1,59 @@
-header {
+#header {
   background-color: $header-background-color;
   border-bottom: 1px solid $header-border-color;  
-
-  hgroup {
+  
+  #main-menu {
     width: $page-width;
-    height: $header-height;
-    margin: 0 auto;    
-    position: relative;
+    margin: 0 auto;
 
     color: $header-text-color;
     font-family: $heading-font;
-    font-weight: bold;
+    vertical-align: baseline;
+
+    > ol {
+      @include pwnplus-menu-bar(
+        $bar-color: $header-background-color,
+        $text-color: $header-text-color,
+        $border-color: $header-border-color,
+        $hover-bar-color: $header-menu-hover-color,
+        $hover-text-color: $header-menu-hover-text-color,
+        $last-item-right: true
+      );
+  
+      font-size: $header-menu-font-size;
+      
+      > li > a:after {
+        content: "\FEFF";
+        display: inline-block;
+        font-size: ($header-height - 4px);
+        line-height: $header-height;
+        width: 0px;
+      }
+    }
   }
   
   h1 {
     display: inline-block;
-    overflow: hidden;
     margin: 0;
+    padding: 0;
   
     font-size: ($header-height - 4px);
     line-height: $header-height;
     font-variant: small-caps;
     color: $header-title-color;
-  
-    vertical-align: top;
     
     img {
-      display: block;
-      padding: 2px 0;
-      float: left;
+      display: inline-block;
+      margin: auto 0;
     }
     
     span {
-      display: block;
-      padding-right: 0.5em;
-      float: left;
-      height: 100%;
+      line-height: $header-height;
     }
     
     // Padding between the image and the title.
     img + span {
-      padding-left: 0.5em;
+      padding-left: 0.2em;
     }
-    
-    a, a:visited, a:hover, a:active {
-      color: inherit;
-      text-decoration: none;
-    }
-  }
-  
-  nav {
-    display: inline-block;
-    font-weight: normal;
-    height: 100%;
-  }
-  nav > ol {
-    @include menu-list($hover-color: $header-menu-hover-color,
-                       $hover-text-color: $header-menu-hover-text-color,
-                       $border-color: $header-border-color,
-                       $last-item-right: true);
-    background-color: $header-background-color;
-
-    font-size: $header-menu-font-size;
-    line-height: $header-menu-line-height;
-    height: 100%;
-    > li > a {
-      padding-top: $header-height - $header-menu-line-height;
-      height: $header-menu-line-height;
-    }
-  }
-  nav a img {
-    vertical-align: baseline;
   }
 }

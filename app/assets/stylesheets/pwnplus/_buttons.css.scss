@@ -1,0 +1,136 @@
+// Low-level function for a Google Plus-style button.
+@mixin pwnplus-button(
+    $color,
+    $border-color,
+    $text-color,
+    $hover-text-color: $text-color,
+    $hover-border-color: $border-color,
+    $active-text-color: $text-color,
+    $active-border-color: $hover-border-color,
+    $subdued: true
+) {
+  display: inline-block;
+
+  margin: 0;
+  padding: 0.1em 1ex;
+  border: 1px solid $border-color;
+
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  
+  color: $text-color;
+  @if not $subdued {
+    text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+  }
+  font-size: 1.21em;
+  line-height: 1.35em;
+  text-decoration: none;
+  text-overflow: ellipsis;  
+  
+  background-color: $color;
+  background: -webkit-gradient(linear, 0% 40%, 0% 70%,
+              from(darken($color, 1%)), to(lighten($color, 1%)));
+  background: -moz-gradient(linear, 0% 40%, 0% 70%,
+              from(darken($color, 1%)), to(lighten($color, 1%))); 
+  
+  -webkit-transition: all .218s;
+  -moz-transition: all .218s;
+  transition: all .218s;  
+  
+  @if $subdued {
+    img {
+      -webkit-filter: grayscale(0.66);
+    }
+  }
+  @if not $subdued {
+    img {
+      -webkit-filter: brightness(-0.2);
+    }
+  }
+  
+  &:visited {
+    color: $text-color;
+  }
+
+  &:hover {
+    color: $hover-text-color;
+    border-color: $hover-border-color;
+    @if not $subdued {
+      text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+    }
+    
+    background: -webkit-gradient(linear, 0% 40%, 0% 70%,
+        from(darken($color, 1%)), to(lighten($color, 2%)));
+    background: -moz-gradient(linear, 0% 40%, 0% 70%,
+        from(darken($color, 1%)), to(lighten($color, 2%)));     
+
+    @if $subdued {
+      -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+      -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+
+      img {
+        -webkit-filter: grayscale(0.33);
+      }
+    }
+    @if not $subdued {
+      -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);      
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+
+      img {
+        -webkit-filter: brightness(-0.1);
+      }
+    }
+  }
+  &:active {
+    color: $active-text-color;
+    border-color: $active-border-color;
+    
+    @if $subdued {
+      -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+      -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+
+      img {
+        -webkit-filter: grayscale(0);
+      }
+    }
+    @if not $subdued {
+      text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+      
+      -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);      
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+
+      img {
+        -webkit-filter: brightness(0);
+      }
+    }
+  }
+}
+
+// Handy mixin for a gray-ish Google Plus-like button.
+@mixin pwnplus-subdued-button($main-color) {
+  @include pwnplus-button(
+    $color: change-color($main-color, $saturation: 5%, $lightness: 95%),
+    $text-color: change-color($main-color, $saturation: 5%, $lightness: 43%),
+    $border-color: change-color($main-color, $saturation: 5%, $lightness: 86%),
+    $hover-border-color: change-color($main-color, $saturation: 5%,
+                                                   $lightness: 78%),
+    $subdued: true
+  );
+}
+
+// Handy mixin for a colored Google Plus-like button.
+@mixin pwnplus-emphasized-button($main-color) {
+  @include pwnplus-button(
+    $color: change-color($main-color, $saturation: 100%, $lightness: 36%),
+    $text-color: change-color($main-color, $saturation: 0%, $lightness: 100%),
+    $border-color: change-color($main-color, $saturation: 57%, $lightness: 32%),
+    $hover-border-color: change-color($main-color, $saturation: 100%,
+                                                   $lightness: 22%),
+    $subdued: false
+  );
+}

@@ -1,0 +1,104 @@
+// Turns an ol into a Google-style two-level menu bar.
+@mixin pwnplus-menu-bar(
+    $bar-color,
+    $text-color,
+    $border-color: $bar-color,
+    $hover-bar-color: $text-color,
+    $hover-text-color: $bar-color,
+    $z-index: 5,
+    $last-item-right: false) {
+  display: block;
+  background-color: $bar-color;
+  color: $text-color;
+  margin: 0;
+  padding: 0;
+  
+  @if $last-item-right {
+    position: relative;
+  }
+  @include pwnplus-clearfix;
+  
+  li {
+    margin: 0;
+    padding: 0;
+  }
+  
+  > li {
+    display: inline-block;
+    background-color: $bar-color;
+    
+    > a {
+      display: inline-block;
+    }
+    
+    > ol {
+      list-style: none;
+      display: none;
+      background-color: $bar-color;
+      margin: 0;
+      padding: 0;
+      border: 1px solid $border-color;
+      position: absolute;
+      z-index: $z-index;
+      
+      -webkit-box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
+      -moz-box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
+      
+      a {
+        padding: 0 2.5em 0 0.5em;
+      }
+    }
+  }
+  > li:hover {
+    > ol {
+      display: block;
+    }
+  }
+  li:hover > a {
+    background-color: $hover-bar-color; 
+    color: $hover-text-color;
+    img {
+      -webkit-filter: grayscale(0);
+    }
+  }
+
+  a {
+    display: block;
+    padding: 0 0.5em;
+    text-decoration: none;
+    color: inherit;
+    img {
+      -webkit-filter: grayscale(0.33);
+      vertical-align: baseline;
+    }
+  }
+  a:visited {
+    color: inherit;
+  }
+  
+  >li:first-child > a {
+    padding-left: 1px;
+  }
+
+  @if $last-item-right == true {
+    > li:last-child {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+    > li:last-child > ol {
+      right: 0;
+      max-width: 500%;
+    }
+    > li:last-child a {
+      vertical-align: bottom;
+    }
+    > li:last-child > a {
+      padding: 0 1px 0 0.5em;
+    }
+    > li:last-child a span {
+      display: inline-block;
+    }
+  }
+}

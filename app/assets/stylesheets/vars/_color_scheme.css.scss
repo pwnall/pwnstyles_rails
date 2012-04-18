@@ -33,34 +33,8 @@ $footer-text-color: change-color($main-color1,
     $saturation: 54%, $lightness: 16%) !default;
 
 // Buttons.
-$button-base-color: change-color($main-color1, $saturation: 5%) !default;
-$button-color: change-color($button-base-color, $lightness: 95%) !default;
-$button-text-color: change-color($button-base-color, $lightness: 43%) !default;
-$button-border-color: change-color($button-base-color, $lightness: 86%)
-                      !default;
-$button-hover-text-color: change-color($button-base-color, $lightness: 20%)
-                          !default;
-$button-hover-border-color: change-color($button-base-color, $lightness: 78%)
-                            !default;
-$button-active-text-color: change-color($button-base-color, $lightness: 0%)
-                           !default;
-$button-active-border-color: change-color($button-base-color, $lightness: 78%)
-                             !default;
-
+$button-base-color: $main-color1 !default;
 $color-button-base-color: $main-color1 !default;
-$color-button-color: change-color($color-button-base-color,
-                     $lightness: 36%) !default;
-$color-button-text-color: change-color($color-button-base-color,
-                          $saturation: 0%, $lightness: 100%) !default;
-$color-button-border-color: change-color($color-button-base-color,
-                            $saturation: 57%, $lightness: 32%) !default;
-$color-button-hover-text-color: $color-button-text-color !default;
-$color-button-hover-border-color: change-color($color-button-base-color,
-                                  $lightness: 22%) !default;
-$color-button-active-text-color: $color-button-text-color !default;
-$color-button-active-border-color: change-color($color-button-base-color,
-                                   $lightness: 22%) !default;
-
 
 // Input fields.
 $input-base-color: $main-color1 !default;
