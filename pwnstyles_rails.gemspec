@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "pwnstyles_rails"
-  s.version = "0.1.20"
+  s.version = "0.1.21"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Victor Costan"]
@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
     "VERSION",
     "app/assets/images/pwnstyles/select-arrow.svg",
     "app/assets/javascripts/pwn-fx.js.coffee",
+    "app/assets/stylesheets/_pwnplus.css.scss",
     "app/assets/stylesheets/_pwnstyles.css.scss",
     "app/assets/stylesheets/generic/_buttons.css.scss",
     "app/assets/stylesheets/generic/_figures.css.scss",
@@ -43,6 +44,10 @@ Gem::Specification.new do |s|
     "app/assets/stylesheets/modules/_footer.css.scss",
     "app/assets/stylesheets/modules/_header.css.scss",
     "app/assets/stylesheets/modules/_status_bar.css.scss",
+    "app/assets/stylesheets/pwnplus/_buttons.css.scss",
+    "app/assets/stylesheets/pwnplus/_form_fields.css.scss",
+    "app/assets/stylesheets/pwnplus/_hacks.css.scss",
+    "app/assets/stylesheets/pwnplus/_menu_bar.css.scss",
     "app/assets/stylesheets/vars/_color_scheme.css.scss",
     "app/assets/stylesheets/vars/_fonts.css.scss",
     "app/assets/stylesheets/vars/_layout_sizes.css.scss",
