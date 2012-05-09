@@ -25,6 +25,9 @@ $h5-line-height: $main-line-height !default;
 $h6-font-size: $main-font-size * 1 !default;
 $h6-line-height: $main-line-height !default;
 
+// The logo image is usually next to a heading.
+$logo-image-baseline: 2px !default;
+
 // Header.
 $header-menu-font-size: 14pt !default;
 $header-menu-line-height: 1.5 !default;
