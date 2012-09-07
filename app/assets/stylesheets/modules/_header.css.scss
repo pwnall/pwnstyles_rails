@@ -28,7 +28,6 @@
           display: inline-block;
           font-family: $heading-font;
           font-size: ($header-height - 4px);
-          font-variant: small-caps;
           line-height: $header-height;
           margin: 0;
           padding: 0;
@@ -50,7 +49,6 @@
 
     font-size: ($header-height - 4px);
     line-height: $header-height;
-    font-variant: small-caps;
     color: $header-title-color;
 
     img {
