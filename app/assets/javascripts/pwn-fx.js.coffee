@@ -15,7 +15,7 @@ class PwnFxClass
   constructor: ->
     @effects = []
     @effectsByName = {}
-  
+
   # Wires JS to elements with data-pwnfx attributes.
   #
   # @param {Element} root the element whose content is wired; use document at
@@ -34,8 +34,8 @@ class PwnFxClass
         element.setAttribute doneAttrName, attrValue
         scopeId = element.getAttribute scopeAttrName
         new effectClass element, attrValue, scopeId
-    null     
-  
+    null
+
   # Registers a PwnFx effect.
   #
   # @param {String} attrName string following data-pwnfx- in the effect's
@@ -45,7 +45,7 @@ class PwnFxClass
     if @effectsByName[attrPrefix]
       throw new Error("PwnFx effect name {attrPrefix} already registered")
     @effects.push [attrPrefix, klass]
-  
+
   # Finds a scoping container.
   #
   # @param {String} scopeId the scope ID to look for
@@ -58,7 +58,7 @@ class PwnFxClass
     while element != null && element.getAttribute('data-pwnfx-scope') != scopeId
       element = element.parentElement
     element || document
-  
+
   # Performs a scoped querySelectAll.
   #
   # @param {HTMLElement} scope the DOM element serving as the search scope
@@ -68,7 +68,7 @@ class PwnFxClass
   queryScope: (scope, selector) ->
     scopeMatches = false
     if scope != document
-      # TODO: machesSelector is in a W3C spec, but only implemented using 
+      # TODO: machesSelector is in a W3C spec, but only implemented using
       #       prefixes; the code below should be simplified once browsers
       #       implement it without vendor prefixes
       if scope.matchesSelector
@@ -76,37 +76,27 @@ class PwnFxClass
       else if scope.webkitMatchesSelector
         scopeMatches = scope.webkitMatchesSelector selector
       else if scope.mozMatchesSelector
-        scopeMatches = scope.mozMatchesSelector
-    
+        scopeMatches = scope.mozMatchesSelector selector
+
     if scopeMatches
       matches = Array.prototype.slice.call scope.querySelectorAll(selector)
       matches.push scope
       matches
     else
       scope.querySelectorAll selector
-  
-  # Executes the JavaScript inside the <script> tags in a DOM subtree.
-  #
-  # @param {HTMLElement} element the DOM element rooting the subtree that will
-  #                              be searched for <script> tags
-  runScripts: (element) ->
-    # HACK: <script>s are removed and re-inserted so the browser runs them
-    for scriptElement in element.querySelectorAll('script')
-      parent = scriptElement.parentElement
-      nextSibling = scriptElement.nextSibling
-      parent.removeChild scriptElement
-      parent.insertBefore scriptElement.cloneNode(true), nextSibling
-    null
-  
+
   # Replaces an element's contents with some HTML.
   #
-  # The JavaScript inside the HTML's <script> tags will be executed. 
+  # The JavaScript inside the HTML's <script> tags will be executed.
   #
   # @param {HTMLElement} element the element whose contents will be replaced
   # @param {String}
   replaceHtml: (element, html) ->
-    element.innerHTML = html
-    @runScripts element
+    range = document.createRange()
+    range.selectNode document.body
+    fragment = range.createContextualFragment html
+    element.innerHTML = ''
+    element.appendChild fragment
     @wire element
 
   # The closest form element wrapping a node.
@@ -119,7 +109,7 @@ class PwnFxClass
       return element if element.nodeName == 'FORM'
       element = element.parentNode
     null
-  
+
   # Do AJAX.
   #
   # @param {String} url the request URL (e.g., "http://localhost/path/to.html")
@@ -137,14 +127,14 @@ class PwnFxClass
       xhr.send new FormData(form)
     else
       xhr.send null
-  
+
   # Called when an XHR request issued by PwnFx.xhr works out.
   _xhr_onload: ->
     if (@status < 200 || @status >= 300) && (@status != 304)
       throw new Error(
           "XHR result ignored due to HTTP #{@status}: #{@statusText}")
     @pwnfxOnData @responseText
-  
+
 # Singleton instance.
 PwnFx = new PwnFxClass
 
@@ -163,7 +153,7 @@ class PwnFxMove
     scope = PwnFx.resolveScope scopeId, element
     method = element.getAttribute('data-pwnfx-move-method') || 'append'
     target = document.querySelector "[data-pwnfx-move-target=\"#{identifier}\"]"
-     
+
     switch method
       when 'append'
         target.appendChild element
@@ -172,11 +162,11 @@ class PwnFxMove
         target.appendChild element
       else
         throw new Error("pwnfx-move-method #{method} not implemented")
-  
+
 
 PwnFx.registerEffect 'move', PwnFxMove
-    
-    
+
+
 # Renders the contents of a template into a DOM element.
 #
 # Attributes:
@@ -186,9 +176,9 @@ PwnFx.registerEffect 'move', PwnFxMove
 #   data-pwnfx-render-randomize: regexp pattern whose matches will be replaced
 #       with a random string; useful for generating unique IDs
 #   data-pwnfx-render-target: set on the element(s) receiving the rendered HTML;
-#       set to the identifier in data-pwnfx-render 
+#       set to the identifier in data-pwnfx-render
 #   data-pwnfx-render-source: set to the identifier in data-pwnfx-render, on the
-#       <script> tag containing the source HTML 
+#       <script> tag containing the source HTML
 class PwnFxRender
   constructor: (element, identifier, scopeId) ->
     sourceSelector = "script[data-pwnfx-render-source=\"#{identifier}\"]"
@@ -200,7 +190,7 @@ class PwnFxRender
       randomizeRegExp = new RegExp(randomizedPatten, 'g')
     else
       randomizeRegExp = null
-    
+
     onClick = (event) ->
       scope = PwnFx.resolveScope scopeId, element
       source = scope.querySelector sourceSelector
@@ -218,7 +208,7 @@ class PwnFxRender
 PwnFx.registerEffect 'render', PwnFxRender
 
 
-# Loads some content after the main page load via an AJAX request. 
+# Loads some content after the main page load via an AJAX request.
 #
 # The text / HTML returned by the request is placed in another element. Scripts
 # in <script> tags are executed.
@@ -245,7 +235,7 @@ class PwnFxDelayed
         scope = PwnFx.resolveScope scopeId, element
         for targetElement in PwnFx.queryScope(scope, targetSelector)
           PwnFx.replaceHtml targetElement, data
-          
+
     window.setTimeout ajaxLoad, delay
 
 PwnFx.registerEffect 'delayed', PwnFxDelayed
@@ -272,31 +262,31 @@ class PwnFxRefresh
     xhrForm = PwnFx.parentForm element
     refreshDelay = parseInt(
         element.getAttribute('data-pwnfx-refresh-ms') || '200');
-    
+
     onXhrData = (data) ->
       scope = PwnFx.resolveScope scopeId, element
       for targetElement in PwnFx.queryScope(scope, targetSelector)
         PwnFx.replaceHtml targetElement, data
-            
+
     changeTimeout = null
     refreshOldValue = null
     ajaxRefresh = ->
       changeTimeout = null
       PwnFx.xhr xhrUrl, xhrMethod, xhrForm, onXhrData
-      
+
     onChange = ->
       value = element.value
       return true if value == refreshOldValue
       refreshOldValue = value
-      
+
       window.clearTimeout changeTimeout if changeTimeout != null
       changeTimeout = window.setTimeout ajaxRefresh, refreshDelay
       true
-      
+
     element.addEventListener 'change', onChange, false
     element.addEventListener 'keydown', onChange, false
     element.addEventListener 'keyup', onChange, false
-    
+
 PwnFx.registerEffect 'refresh', PwnFxRefresh
 
 
@@ -338,7 +328,7 @@ class PwnFxConfirm
         targetElement.classList.add hiddenClass
       true
     onChange()
-      
+
     element.addEventListener 'change', onChange, false
     element.addEventListener 'keydown', onChange, false
     element.addEventListener 'keyup', onChange, false
@@ -371,7 +361,7 @@ class PwnFxHide
       positive = (trigger == 'click') || element.checked
       hideSelector = if positive then positiveSelector else negativeSelector
       showSelector = if positive then negativeSelector else positiveSelector
-      
+
       scope = PwnFx.resolveScope scopeId, element
       for targetElement in PwnFx.queryScope(scope, hideSelector)
         targetElement.classList.add hiddenClass
@@ -382,7 +372,7 @@ class PwnFxHide
         false
       else
         true
-    
+
     if trigger == 'click'
       element.addEventListener 'click', onChange, false
     else if trigger == 'checked'
@@ -411,21 +401,21 @@ class PwnFxShowIf
     hiddenClass = element.getAttribute('data-pwnfx-showif-class') || 'hidden'
     showValue = element.getAttribute 'data-pwnfx-showif-is'
     sourceSelector = "[data-pwnfx-showif-source=\"#{identifier}\"]"
-    
+
     replacementTag = element.getAttribute 'data-pwnfx-showif-replace'
     if replacementTag
       replacement = document.createElement replacementTag
       replacement.setAttribute 'class', hiddenClass
     else
       replacement = null
-    
+
     isHidden = false
     onChange = (event) ->
       value = event.target.value
       willHide = value != showValue
       return if isHidden == willHide
       isHidden = willHide
-      
+
       if replacement
         if willHide
           element.parentElement.replaceChild replacement, element
@@ -453,7 +443,7 @@ PwnFx.registerEffect 'showif', PwnFxShowIf
 # Attributes:
 #   data-pwnfx-remove: an identifier connecting the elements to be removed
 #   data-pwnfx-remove-target: set to the same value as data-pwnfx-remove on
-#       elements that will be removed when the element is clicked 
+#       elements that will be removed when the element is clicked
 class PwnFxRemove
   constructor: (element, identifier, scopeId) ->
     targetSelector = "[data-pwnfx-remove-target=\"#{identifier}\"]"

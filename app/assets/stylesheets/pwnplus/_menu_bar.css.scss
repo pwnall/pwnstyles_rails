@@ -12,25 +12,27 @@
   color: $text-color;
   margin: 0;
   padding: 0;
-  
+
   @if $last-item-right {
     position: relative;
   }
   @include pwnplus-clearfix;
-  
+
   li {
     margin: 0;
     padding: 0;
   }
-  
+
+  vertical-align: bottom;
   > li {
     display: inline-block;
     background-color: $bar-color;
-    
+    vertical-align: bottom;
+
     > a {
       display: inline-block;
     }
-    
+
     > ol {
       list-style: none;
       display: none;
@@ -40,11 +42,11 @@
       border: 1px solid $border-color;
       position: absolute;
       z-index: $z-index;
-      
+
       -webkit-box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
       -moz-box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
       box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
-      
+
       a {
         padding: 0 2.5em 0 0.5em;
       }
@@ -56,7 +58,7 @@
     }
   }
   li:hover > a {
-    background-color: $hover-bar-color; 
+    background-color: $hover-bar-color;
     color: $hover-text-color;
     img {
       -webkit-filter: grayscale(0);
@@ -75,7 +77,7 @@
   a:visited {
     color: inherit;
   }
-  
+
   >li:first-child > a {
     padding-left: 1px;
   }

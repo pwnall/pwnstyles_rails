@@ -3,6 +3,7 @@
     $color,
     $border-color,
     $text-color,
+    $font-weight: inherit,
     $hover-text-color: $text-color,
     $hover-border-color: $border-color,
     $active-text-color: $text-color,
@@ -18,37 +19,40 @@
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
-  
+
   color: $text-color;
   @if not $subdued {
     text-shadow: 0 1px rgba(0, 0, 0, 0.1);
   }
   font-size: 1.21em;
   line-height: 1.35em;
+  font-weight: $font-weight;
   text-decoration: none;
-  text-overflow: ellipsis;  
-  
+  text-overflow: ellipsis;
+
   background-color: $color;
-  background: -webkit-gradient(linear, 0% 40%, 0% 70%,
-              from(darken($color, 1%)), to(lighten($color, 1%)));
-  background: -moz-gradient(linear, 0% 40%, 0% 70%,
-              from(darken($color, 1%)), to(lighten($color, 1%))); 
-  
+  background: -webkit-linear-gradient(top, lighten($color, 1%),
+                                           darken($color, 2%));
+  background: -moz-linear-gradient(top, lighten($color, 1%),
+                                        darken($color, 2%));
+  background: linear-gradient(to bottom, lighten($color, 1%) 0%,
+                                         darken($color, 2%) 100%);
+
   -webkit-transition: all .218s;
   -moz-transition: all .218s;
-  transition: all .218s;  
-  
+  transition: all .218s;
+
   @if $subdued {
     img {
-      -webkit-filter: grayscale(0.66);
+      -webkit-filter: grayscale(0.4);
     }
   }
   @if not $subdued {
     img {
-      -webkit-filter: brightness(-0.2);
+      -webkit-filter: brightness(-0.05);
     }
   }
-  
+
   &:visited {
     color: $text-color;
   }
@@ -59,11 +63,6 @@
     @if not $subdued {
       text-shadow: 0 1px rgba(0, 0, 0, 0.3);
     }
-    
-    background: -webkit-gradient(linear, 0% 40%, 0% 70%,
-        from(darken($color, 1%)), to(lighten($color, 2%)));
-    background: -moz-gradient(linear, 0% 40%, 0% 70%,
-        from(darken($color, 1%)), to(lighten($color, 2%)));     
 
     @if $subdued {
       -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
@@ -71,23 +70,30 @@
       box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 
       img {
-        -webkit-filter: grayscale(0.33);
+        -webkit-filter: grayscale(0);
       }
     }
     @if not $subdued {
       -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-      -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);      
+      -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 
       img {
-        -webkit-filter: brightness(-0.1);
+        -webkit-filter: brightness(0.05);
       }
     }
   }
   &:active {
     color: $active-text-color;
     border-color: $active-border-color;
-    
+
+    background: -webkit-linear-gradient(top, darken($color, 2%),
+                                             lighten($color, 2%));
+    background: -moz-linear-gradient(top, darken($color, 2%),
+                                          lighten($color, 2%));
+    background: linear-gradient(to bottom, darken($color, 2%) 0%,
+                                           lighten($color, 2%) 100%);
+
     @if $subdued {
       -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
       -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -99,13 +105,13 @@
     }
     @if not $subdued {
       text-shadow: 0 1px rgba(0, 0, 0, 0.3);
-      
+
       -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
-      -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);      
+      -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
       box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
 
       img {
-        -webkit-filter: brightness(0);
+        -webkit-filter: brightness(0.05);
       }
     }
   }
@@ -119,6 +125,7 @@
     $border-color: change-color($main-color, $saturation: 5%, $lightness: 86%),
     $hover-border-color: change-color($main-color, $saturation: 5%,
                                                    $lightness: 78%),
+    $font-weight: 400,
     $subdued: true
   );
 }
@@ -126,9 +133,11 @@
 // Handy mixin for a colored Google Plus-like button.
 @mixin pwnplus-emphasized-button($main-color) {
   @include pwnplus-button(
-    $color: change-color($main-color, $saturation: 100%, $lightness: 36%),
+    $color: change-color($main-color, $saturation: 100%, $lightness: 40%),
     $text-color: change-color($main-color, $saturation: 0%, $lightness: 100%),
-    $border-color: change-color($main-color, $saturation: 57%, $lightness: 32%),
+    $font-weight: 600,
+    $border-color: change-color($main-color, $saturation: 57%,
+                                             $lightness: 32%),
     $hover-border-color: change-color($main-color, $saturation: 100%,
                                                    $lightness: 22%),
     $subdued: false

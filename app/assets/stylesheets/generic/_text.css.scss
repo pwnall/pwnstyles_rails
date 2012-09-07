@@ -7,6 +7,7 @@ html, body {
     weight: normal;
   }
   line-height: $main-line-height;
+  text-rendering: optimizeLegibility;
 }
 
 p {
@@ -17,6 +18,14 @@ h1, h2, h3, h4, h5, h6 {
   font-family: $heading-font;
   font-weight: bold;
   margin: 0.25em 0 0.2em 0;
+  text-rendering: geometricPrecision;
+
+  // This patch makes buttons in headings look less weird.
+  input[type=submit], input[type=button], button, a.button {
+    font-family: $main-font;
+    font-size: 1.1em;
+    text-rendering: optimizeLegibility;
+  }
 }
 
 h1 {

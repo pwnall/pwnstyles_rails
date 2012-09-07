@@ -5,7 +5,7 @@
     $background-color: inherit,
     $hover-border-color: darken($border-color, 19%),
     $hover-shadow-color: lighten($hover-border-color, 3%),
-    $focus-border-color: saturate(darken($border-color, 55%), 100%), 
+    $focus-border-color: saturate(darken($border-color, 55%), 100%),
     $focus-shadow-color: desaturate(lighten($focus-border-color, 55%), 33%),
     $placeholder-text-color: change-color($border-color, $saturation: 95%,
                                                          $lightness: 55%)
@@ -14,7 +14,7 @@
   padding: 0.1em 0.5ex;
   border: 1px solid $border-color;
   border-top-color: darken($border-color, 10%);
-  
+
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
@@ -23,30 +23,30 @@
   font-size: inherit;
   line-height: inherit;
   text-decoration: none;
-    
+
   background-color: $background-color;
 
   -webkit-transition: all .218s;
   -moz-transition: all .218s;
-  transition: all .218s;  
+  transition: all .218s;
 
   &:hover {
     border-color: $hover-border-color;
     border-top-color: darken($hover-border-color, 10%);
 
 
-    -moz-box-shadow: inset 0px 1px 2px $hover-shadow-color;
-    -webkit-box-shadow: inset 0px 1px 2px $hover-shadow-color;
-    box-shadow: inset 0px 1px 2px $hover-shadow-color;
+    -moz-box-shadow: inset 0 1px 2px $hover-shadow-color;
+    -webkit-box-shadow: inset 0 1px 2px $hover-shadow-color;
+    box-shadow: inset 0 1px 2px $hover-shadow-color;
   }
   &:focus {
     border-color: $focus-border-color;
     border-top-color: darken($focus-border-color, 10%);
     outline: none;
 
-    -moz-box-shadow: inset 0px 1px 2px $focus-shadow-color;
-    -webkit-box-shadow: inset 0px 1px 2px $focus-shadow-color;
-    box-shadow: inset 0px 1px 2px $input-focus-shadow-color;
+    -moz-box-shadow: inset 0 1px 2px $focus-shadow-color;
+    -webkit-box-shadow: inset 0 1px 2px $focus-shadow-color;
+    box-shadow: inset 0 1px 2px $input-focus-shadow-color;
   }
 
   &::-webkit-input-placeholder {
@@ -67,7 +67,7 @@
     $background-color: inherit,
     $hover-border-color: darken($border-color, 19%),
     $hover-shadow-color: lighten($hover-border-color, 3%),
-    $focus-border-color: saturate(darken($border-color, 55%), 100%), 
+    $focus-border-color: saturate(darken($border-color, 55%), 100%),
     $focus-shadow-color: desaturate(lighten($focus-border-color, 55%), 33%)
 ) {
   border: 1px solid $border-color;
@@ -75,23 +75,23 @@
 
   -webkit-transition: all .218s;
   -moz-transition: all .218s;
-  transition: all .218s;  
+  transition: all .218s;
 
   &:hover {
     border-color: $hover-border-color;
-    
-    box-shadow: inset 0px 1px 2px $hover-shadow-color;
-    -moz-box-shadow: inset 0px 1px 2px $hover-shadow-color;
-    -webkit-box-shadow: inset 0px 1px 2px $hover-shadow-color;
+
+    box-shadow: inset 0 1px 2px $hover-shadow-color;
+    -moz-box-shadow: inset 0 1px 2px $hover-shadow-color;
+    -webkit-box-shadow: inset 0 1px 2px $hover-shadow-color;
   }
   &:focus {
     border-color: $focus-border-color;
     outline: none;
 
-    -moz-box-shadow: inset 0px 1px 2px $focus-shadow-color;
-    -webkit-box-shadow: inset 0px 1px 2px $focus-shadow-color;
-    box-shadow: inset 0px 1px 2px $focus-shadow-color;
-  }  
+    -moz-box-shadow: inset 0 1px 2px $focus-shadow-color;
+    -webkit-box-shadow: inset 0 1px 2px $focus-shadow-color;
+    box-shadow: inset 0 1px 2px $focus-shadow-color;
+  }
 }
 
 @mixin gplus-form-select(
@@ -100,7 +100,7 @@
     $background-color: inherit,
     $hover-border-color: darken($border-color, 19%),
     $hover-shadow-color: lighten($hover-border-color, 3%),
-    $focus-border-color: saturate(darken($border-color, 55%), 100%), 
+    $focus-border-color: saturate(darken($border-color, 55%), 100%),
     $focus-shadow-color: desaturate(lighten($focus-border-color, 55%), 33%),
     $placeholder-text-color: change-color($border-color, $saturation: 95%,
                                                          $lightness: 55%)
@@ -111,7 +111,7 @@
     $background-color: $background-color,
     $hover-border-color: $hover-border-color,
     $hover-shadow-color: $hover-shadow-color,
-    $focus-border-color: $focus-border-color, 
+    $focus-border-color: $focus-border-color,
     $focus-shadow-color: $focus-shadow-color,
     $placeholder-text-color: $placeholder-text-color
   );
@@ -133,7 +133,7 @@
   border-color: $highlight-color;
   background-color: $highlight-background;
 
-  box-shadow: inset 0px 1px 2px $highlight-shadow;
-  -moz-box-shadow: inset 0px 1px 2px $highlight-shadow;
-  -webkit-box-shadow: inset 0px 1px 2px $highlight-shadow;
+  box-shadow: inset 0 1px 2px $highlight-shadow;
+  -moz-box-shadow: inset 0 1px 2px $highlight-shadow;
+  -webkit-box-shadow: inset 0 1px 2px $highlight-shadow;
 }

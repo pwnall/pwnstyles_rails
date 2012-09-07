@@ -1,7 +1,7 @@
 #header {
   background-color: $header-background-color;
-  border-bottom: 1px solid $header-border-color;  
-  
+  border-bottom: 1px solid $header-border-color;
+
   #main-menu {
     width: $page-width;
     margin: 0 auto;
@@ -19,45 +19,57 @@
         $hover-text-color: $header-menu-hover-text-color,
         $last-item-right: true
       );
-  
+
       font-size: $header-menu-font-size;
-      
-      > li > a:after {
-        content: "\FEFF";
-        display: inline-block;
-        font-size: ($header-height - 4px);
-        line-height: $header-height;
-        width: 0px;
+
+      > li {
+        > a:after {
+          content: "\FEFF";
+          display: inline-block;
+          font-family: $heading-font;
+          font-size: ($header-height - 4px);
+          font-variant: small-caps;
+          line-height: $header-height;
+          margin: 0;
+          padding: 0;
+          vertical-align: baseline;
+          width: 0;
+        }
+        &:first-child > a:after {
+          content: "";
+          content: none;
+        }
       }
     }
   }
-  
+
   h1 {
     display: inline-block;
     margin: 0;
     padding: 0;
-  
+
     font-size: ($header-height - 4px);
     line-height: $header-height;
     font-variant: small-caps;
     color: $header-title-color;
-    
+
     img {
       display: inline-block;
       margin: auto 0;
     }
-    
+
     span {
       line-height: $header-height;
     }
-    
+
     // Padding between the image and the title.
     img + span {
       padding-left: 0.2em;
     }
   }
+
+  img.logo {
+    vertical-align: -$logo-image-baseline;
+  }
 }
 
-img.logo {
-  vertical-align: -$logo-image-baseline;
-}
