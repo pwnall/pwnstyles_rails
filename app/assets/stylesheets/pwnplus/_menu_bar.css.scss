@@ -25,12 +25,12 @@
 
   vertical-align: bottom;
   > li {
-    display: inline-block;
+    @include inline-block;
     background-color: $bar-color;
     vertical-align: bottom;
 
     > a {
-      display: inline-block;
+      @include inline-block;
     }
 
     > ol {
@@ -43,9 +43,7 @@
       position: absolute;
       z-index: $z-index;
 
-      -webkit-box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
-      -moz-box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
-      box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
+      @include box-shadow(0 1px 1px 1px rgba(0, 0, 0, 0.1));
 
       a {
         padding: 0 2.5em 0 0.5em;
@@ -61,7 +59,7 @@
     background-color: $hover-bar-color;
     color: $hover-text-color;
     img {
-      -webkit-filter: grayscale(0);
+      @include filter(grayscale(0));
     }
   }
 
@@ -71,7 +69,7 @@
     text-decoration: none;
     color: inherit;
     img {
-      -webkit-filter: grayscale(0.33);
+      @include filter(grayscale(0.33));
     }
   }
   a:visited {
@@ -99,7 +97,7 @@
       padding: 0 1px 0 0.5em;
     }
     > li:last-child a span {
-      display: inline-block;
+      @include inline-block;
     }
   }
 }

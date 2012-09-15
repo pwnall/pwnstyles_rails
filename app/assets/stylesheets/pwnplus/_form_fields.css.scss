@@ -15,9 +15,7 @@
   border: 1px solid $border-color;
   border-top-color: darken($border-color, 10%);
 
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
+  @include border-radius(2px);
 
   color: $text-color;
   font-size: inherit;
@@ -26,27 +24,20 @@
 
   background-color: $background-color;
 
-  -webkit-transition: all .218s;
-  -moz-transition: all .218s;
-  transition: all .218s;
+  @include transition(all .218s);
 
   &:hover {
     border-color: $hover-border-color;
     border-top-color: darken($hover-border-color, 10%);
 
-
-    -moz-box-shadow: inset 0 1px 2px $hover-shadow-color;
-    -webkit-box-shadow: inset 0 1px 2px $hover-shadow-color;
-    box-shadow: inset 0 1px 2px $hover-shadow-color;
+    @include box-shadow(inset 0 1px 2px $hover-shadow-color);
   }
   &:focus {
     border-color: $focus-border-color;
     border-top-color: darken($focus-border-color, 10%);
     outline: none;
 
-    -moz-box-shadow: inset 0 1px 2px $focus-shadow-color;
-    -webkit-box-shadow: inset 0 1px 2px $focus-shadow-color;
-    box-shadow: inset 0 1px 2px $input-focus-shadow-color;
+    @include box-shadow(inset 0 1px 2px $input-focus-shadow-color);
   }
 
   &::-webkit-input-placeholder {
@@ -73,24 +64,18 @@
   border: 1px solid $border-color;
   background-color: $background-color;
 
-  -webkit-transition: all .218s;
-  -moz-transition: all .218s;
-  transition: all .218s;
+  @include transition(all .218s);
 
   &:hover {
     border-color: $hover-border-color;
 
-    box-shadow: inset 0 1px 2px $hover-shadow-color;
-    -moz-box-shadow: inset 0 1px 2px $hover-shadow-color;
-    -webkit-box-shadow: inset 0 1px 2px $hover-shadow-color;
+    @include box-shadow(inset 0 1px 2px $hover-shadow-color);
   }
   &:focus {
     border-color: $focus-border-color;
     outline: none;
 
-    -moz-box-shadow: inset 0 1px 2px $focus-shadow-color;
-    -webkit-box-shadow: inset 0 1px 2px $focus-shadow-color;
-    box-shadow: inset 0 1px 2px $focus-shadow-color;
+    @include box-shadow(inset 0 1px 2px $focus-shadow-color);
   }
 }
 
@@ -117,9 +102,7 @@
   );
   padding: 0.1em 2ex 0.1em 0.5ex;
   text-overflow: ellipsis;
-  -webkit-appearance: textfield;
-  -moz-appearance: textfield;
-  appearance: textfield;
+  @include appearance(textfield);
   background: asset_data_url("pwnstyles/select-arrow.svg") no-repeat center
               right;
 }
@@ -133,7 +116,5 @@
   border-color: $highlight-color;
   background-color: $highlight-background;
 
-  box-shadow: inset 0 1px 2px $highlight-shadow;
-  -moz-box-shadow: inset 0 1px 2px $highlight-shadow;
-  -webkit-box-shadow: inset 0 1px 2px $highlight-shadow;
+  @include box-shadow(inset 0 1px 2px $highlight-shadow);
 }

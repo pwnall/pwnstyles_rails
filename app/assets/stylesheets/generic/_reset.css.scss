@@ -1,36 +1,45 @@
-html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
-    pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small,
-    strong, sub, sup, var, dl, dt, dd, ol, ul, li, fieldset, form, label,
-    legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside,
-    canvas, details, dialog, figcaption, figure,  footer, header, hgroup, menu,
-    nav, section, summary, time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  font-size: inherit;
-  line-height: inherit;
-  font: inherit;
-  vertical-align: baseline;
-  background: transparent;
+@each $tag in html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p,
+    blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q,
+    samp, small, strong, sub, sup, var, dl, dt, dd, ol, ul, li, fieldset, form,
+    label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article,
+    aside, canvas, details, dialog, figcaption, figure,  footer, header,
+    hgroup, menu, nav, section, summary, time, mark, audio, video {
+  #{$tag} {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: inherit;
+    line-height: inherit;
+    font: inherit;
+    vertical-align: baseline;
+    background: transparent;
+  }
 }
 
-article, aside, details, figcaption, figure, dialog, footer, header, hgroup,
-    menu, nav, section { 
-  display: block;
+@each $html5_tag in article, aside, details, figcaption, figure, dialog,
+    footer, header, hgroup, menu, nav, section {
+  #{$html5_tag} {
+    display: block;
+  }
 }
 
-dl, ul, ol {
-  list-style: none;
+@each $list_tag in dl, ul, ol {
+  #{$list_tag} {
+    list-style: none;
+  }
 }
 
-blockquote, q {
-  quotes: none;
-}
-
-blockquote:before, blockquote:after, q:before, q:after {
-  content: '';
-  content: none;
+@each $tag in blockquote, q {
+  #{$tag} {
+    quotes: none;
+    @each $side in before, after {
+      &:#{$side} {
+        content: '';
+        content: none;
+      }
+    }
+  }
 }
 
 a {
@@ -62,9 +71,13 @@ del {
   text-decoration: line-through;
 }
 
-abbr[title], dfn[title] {
-  border-bottom: 1px dotted;
-  cursor: help;
+@each $tag in abbr, dfn {
+  #{$tag} {
+    &[title] {
+      border-bottom: 1px dotted;
+      cursor: help;
+    }
+  }
 }
 
 table {
@@ -84,6 +97,8 @@ hr {
   padding: 0;
 }
 
-input, select {
-  vertical-align: middle;
+@each $tag in input, select {
+  #{$tag} {
+    vertical-align: middle;
+  }
 }

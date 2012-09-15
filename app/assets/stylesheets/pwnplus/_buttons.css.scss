@@ -10,19 +10,16 @@
     $active-border-color: $hover-border-color,
     $subdued: true
 ) {
-  display: inline-block;
+  @include inline-block;
 
   margin: 0;
   padding: 0.1em 1ex;
   border: 1px solid $border-color;
-
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
+  @include border-radius(2px);
 
   color: $text-color;
   @if not $subdued {
-    text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+    @include text-shadow(0 1px rgba(0, 0, 0, 0.1));
   }
   font-size: 1.21em;
   line-height: 1.35em;
@@ -31,25 +28,19 @@
   text-overflow: ellipsis;
 
   background-color: $color;
-  background: -webkit-linear-gradient(top, lighten($color, 1%),
-                                           darken($color, 2%));
-  background: -moz-linear-gradient(top, lighten($color, 1%),
-                                        darken($color, 2%));
-  background: linear-gradient(to bottom, lighten($color, 1%) 0%,
-                                         darken($color, 2%) 100%);
+  @include background(linear-gradient(lighten($color, 1%),
+                                      darken($color, 2%)));
 
-  -webkit-transition: all .218s;
-  -moz-transition: all .218s;
-  transition: all .218s;
+  @include transition(all .218s);
 
   @if $subdued {
     img {
-      -webkit-filter: grayscale(0.4);
+      @include filter(grayscale(0.4));
     }
   }
   @if not $subdued {
     img {
-      -webkit-filter: brightness(-0.05);
+      @include filter(brightness(-0.05));
     }
   }
 
@@ -61,25 +52,19 @@
     color: $hover-text-color;
     border-color: $hover-border-color;
     @if not $subdued {
-      text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+      @include text-shadow(0 1px rgba(0, 0, 0, 0.3));
     }
 
     @if $subdued {
-      -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-      -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-
+      @include box-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
       img {
-        -webkit-filter: grayscale(0);
+        @include filter(grayscale(0));
       }
     }
     @if not $subdued {
-      -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-      -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-
+      @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
       img {
-        -webkit-filter: brightness(0.05);
+        @include filter(brightness(0.05));
       }
     }
   }
@@ -87,31 +72,20 @@
     color: $active-text-color;
     border-color: $active-border-color;
 
-    background: -webkit-linear-gradient(top, darken($color, 2%),
-                                             lighten($color, 2%));
-    background: -moz-linear-gradient(top, darken($color, 2%),
-                                          lighten($color, 2%));
-    background: linear-gradient(to bottom, darken($color, 2%) 0%,
-                                           lighten($color, 2%) 100%);
+    @include background(linear-gradient(lighten($color, 2%),
+                                        darken($color, 2%)));
 
     @if $subdued {
-      -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-      -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-
+      @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
       img {
         -webkit-filter: grayscale(0);
       }
     }
     @if not $subdued {
-      text-shadow: 0 1px rgba(0, 0, 0, 0.3);
-
-      -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
-      -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
-      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
-
+      @include text-shadow(0 1px rgba(0, 0, 0, 0.3));
+      @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
       img {
-        -webkit-filter: brightness(0.05);
+        @include filter(brightness(0.05));
       }
     }
   }
