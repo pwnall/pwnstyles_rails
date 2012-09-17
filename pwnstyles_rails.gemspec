@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "pwnstyles_rails"
-  s.version = "0.1.24"
+  s.version = "0.1.25"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Victor Costan"]
-  s.date = "2012-09-14"
+  s.date = "2012-09-17"
   s.description = "Included CSS was designed for reuse across pwnb.us apps."
   s.email = "victor@costan.us"
   s.extra_rdoc_files = [
@@ -25,10 +25,21 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "app/assets/images/pwnstyles/select-arrow-emph.svg",
     "app/assets/images/pwnstyles/select-arrow.svg",
     "app/assets/javascripts/pwn-fx.js.coffee",
     "app/assets/stylesheets/_pwnplus.css.scss",
     "app/assets/stylesheets/_pwnstyles.css.scss",
+    "app/assets/stylesheets/elements/_buttons.css.scss",
+    "app/assets/stylesheets/elements/_figures.css.scss",
+    "app/assets/stylesheets/elements/_forms.css.scss",
+    "app/assets/stylesheets/elements/_images.css.scss",
+    "app/assets/stylesheets/elements/_inputs.css.scss",
+    "app/assets/stylesheets/elements/_links.css.scss",
+    "app/assets/stylesheets/elements/_lists.css.scss",
+    "app/assets/stylesheets/elements/_tables.css.scss",
+    "app/assets/stylesheets/elements/_text.css.scss",
+    "app/assets/stylesheets/generic/_compass.css.scss",
     "app/assets/stylesheets/generic/_pwnfx.css.scss",
     "app/assets/stylesheets/generic/_reset.css.scss",
     "app/assets/stylesheets/modules/_body.css.scss",
