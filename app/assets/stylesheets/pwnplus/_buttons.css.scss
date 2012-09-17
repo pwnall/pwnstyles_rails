@@ -21,8 +21,8 @@
   @if not $subdued {
     @include text-shadow(0 1px rgba(0, 0, 0, 0.1));
   }
-  font-size: 1.21em;
-  line-height: 1.35em;
+  font-size: 1.25em;
+  line-height: 1.375em;
   font-weight: $font-weight;
   text-decoration: none;
   text-overflow: ellipsis;

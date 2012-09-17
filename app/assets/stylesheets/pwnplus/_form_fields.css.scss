@@ -1,24 +1,24 @@
 // Make form fields look like Google Plus fields.
-@mixin pwnplus-text-input(
+@mixin pwnplus-text-field(
     $border-color,
     $text-color: inherit,
     $background-color: inherit,
     $hover-border-color: darken($border-color, 19%),
-    $hover-shadow-color: lighten($hover-border-color, 3%),
+    $hover-shadow-color: lighten($hover-border-color, 22%),
     $focus-border-color: saturate(darken($border-color, 55%), 100%),
-    $focus-shadow-color: desaturate(lighten($focus-border-color, 55%), 33%),
-    $placeholder-text-color: change-color($border-color, $saturation: 95%,
-                                                         $lightness: 55%)
+    $focus-shadow-color: desaturate(lighten($focus-border-color, 44%), 33%),
+    $placeholder-text-color: change-color($border-color, $saturation: 5%,
+                                                         $lightness: 68%)
 ) {
   margin: 0;
-  padding: 0.1em 0.5ex;
+  padding: 0.125em 0.5ex;
   border: 1px solid $border-color;
   border-top-color: darken($border-color, 10%);
 
   @include border-radius(2px);
 
   color: $text-color;
-  font-size: inherit;
+  font: inherit;
   line-height: inherit;
   text-decoration: none;
 
@@ -37,7 +37,7 @@
     border-top-color: darken($focus-border-color, 10%);
     outline: none;
 
-    @include box-shadow(inset 0 1px 2px $input-focus-shadow-color);
+    @include box-shadow(inset 0 1px 2px $focus-shadow-color);
   }
 
   &::-webkit-input-placeholder {
@@ -53,16 +53,18 @@
 }
 
 // Google Plus-like stylng for box-like form fields (radio, checkbox).
-@mixin gplus-box-form-field(
+@mixin pwnplus-box-field(
     $border-color,
     $background-color: inherit,
     $hover-border-color: darken($border-color, 19%),
-    $hover-shadow-color: lighten($hover-border-color, 3%),
+    $hover-shadow-color: lighten($hover-border-color, 22%),
     $focus-border-color: saturate(darken($border-color, 55%), 100%),
-    $focus-shadow-color: desaturate(lighten($focus-border-color, 55%), 33%)
+    $focus-shadow-color: desaturate(lighten($focus-border-color, 44%), 33%)
 ) {
   border: 1px solid $border-color;
   background-color: $background-color;
+  width: 1.2em;
+  height: 1.2em;
 
   @include transition(all .218s);
 
@@ -79,42 +81,58 @@
   }
 }
 
-@mixin gplus-form-select(
+// Google Plus-like styling for drop-downs.
+@mixin pwnplus-select-field(
     $border-color,
     $text-color: inherit,
     $background-color: inherit,
     $hover-border-color: darken($border-color, 19%),
-    $hover-shadow-color: lighten($hover-border-color, 3%),
+    $hover-shadow-color: lighten($hover-border-color, 22%),
     $focus-border-color: saturate(darken($border-color, 55%), 100%),
-    $focus-shadow-color: desaturate(lighten($focus-border-color, 55%), 33%),
-    $placeholder-text-color: change-color($border-color, $saturation: 95%,
-                                                         $lightness: 55%)
+    $focus-shadow-color: desaturate(lighten($focus-border-color, 44%), 33%)
 ) {
-  @include gplus-text-input(
+  @include pwnplus-text-field(
     $border-color: $border-color,
     $text-color: $text-color,
     $background-color: $background-color,
     $hover-border-color: $hover-border-color,
     $hover-shadow-color: $hover-shadow-color,
     $focus-border-color: $focus-border-color,
-    $focus-shadow-color: $focus-shadow-color,
-    $placeholder-text-color: $placeholder-text-color
+    $focus-shadow-color: $focus-shadow-color
   );
-  padding: 0.1em 2ex 0.1em 0.5ex;
+  padding: 0.125em 2ex 0.125em 0.5ex;
   text-overflow: ellipsis;
   @include appearance(textfield);
-  background: asset_data_url("pwnstyles/select-arrow.svg") no-repeat center
-              right;
+  background-image: asset_data_url("pwnstyles/select-arrow.svg");
+  background-repeat: no-repeat;
+  background-position: center right;
+  background-size: auto 1em;
+  &:hover, &:focus {
+    background-image: asset_data_url("pwnstyles/select-arrow-emph.svg");
+  }
+  // Animating the arrow SVG is glitchy on Chrome.
+  @include transition(all .218s, background-image 0s);
 }
 
 // Import to highlight a form field to indicate errors in the input.
-@mixin gplus-form-field-error-highlighting(
+@mixin pwnplus-field-error-highlighting(
     $highlight-border: hsl(0deg, 100%, 50%),
     $highlight-background: change-color($highlight-border, $lightness: 97%),
     $highlight-shadow: lighten($highlight-border, 27%)
 ) {
-  border-color: $highlight-color;
+  border-color: $highlight-border;
   background-color: $highlight-background;
 
   @include box-shadow(inset 0 1px 2px $highlight-shadow);
 }
+
+// Add the same padding to labels, so they align nicely with text fields.
+@mixin pwnplus-label {
+  display: inline-block;
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+  border: 1px solid rgba(255, 255, 255, 0);
+  padding: 0.125em 0;
+}
+

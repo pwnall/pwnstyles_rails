@@ -1,105 +1,25 @@
-// Text fields.
-input[type=text], input[type=email], input[type=tel], input[type=password],
-    input[type=search], input[type=number], textarea, select {
-  margin: 0;
-  padding: 0.1em 0.5ex;
-  border: 1px solid $input-border-color;
-  border-top-color: $input-border-top-color;
-
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
-
-  color: $input-text-color;
-  font: inherit;
-  line-height: inherit;
-  text-decoration: none;
-
-  background-color: $input-background-color;
-
-  -webkit-transition: all .218s;
-  -moz-transition: all .218s;
-  transition: all .218s;
-
-  &:hover {
-    border-color: $input-hover-border-color;
-
-    -moz-box-shadow: inset 0 1px 2px $input-hover-shadow-color;
-    -webkit-box-shadow: inset 0 1px 2px $input-hover-shadow-color;
-    box-shadow: inset 0 1px 2px $input-hover-shadow-color;
-  }
-  &:focus {
-    border-color: $input-focus-border-color;
-    outline: none;
-
-    -moz-box-shadow: inset 0 1px 2px $input-focus-shadow-color;
-    -webkit-box-shadow: inset 0 1px 2px $input-focus-shadow-color;
-    box-shadow: inset 0 1px 2px $input-focus-shadow-color;
-  }
+input, textarea {
+  @include pwnplus-text-field($input-border-color);
 }
 textarea {
   height: 5.25em;
 }
-::-webkit-input-placeholder {
-  font: inherit;
-  text-shadow: none;
-  color: $input-placeholder-text-color;
-}
-:-moz-placeholder {
-  font: inherit;
-  text-shadow: none;
-  color: $input-placeholder-text-color;
-}
 
-// Multiple-choice fields.
 input[type=radio], input[type=checkbox] {
-  border: 1px solid $input-border-color;
-  background-color: $input-background-color;
-
-  &:hover {
-    border-color: $input-hover-border-color;
-
-    box-shadow: inset 0 1px 2px $input-hover-shadow-color;
-    -moz-box-shadow: inset 0 1px 2px $input-hover-shadow-color;
-    -webkit-box-shadow: inset 0 1px 2px $input-hover-shadow-color;
-  }
-  &:focus {
-    border-color: $input-focus-border-color;
-    outline: none;
-
-    -moz-box-shadow: inset 0 1px 2px $input-focus-shadow-color;
-    -webkit-box-shadow: inset 0 1px 2px $input-focus-shadow-color;
-    box-shadow: inset 0 1px 2px $input-focus-shadow-color;
-  }
+  @include pwnplus-box-field($input-border-color);
 }
 
-// Drop-downs.
 select {
-  padding: 0.1em 2ex 0.1em 0.5ex;
-  text-overflow: ellipsis;
-  -webkit-appearance: textfield;
-  -moz-appearance: textfield;
-  appearance: textfield;
-  background: asset_data_url("pwnstyles/select-arrow.svg") no-repeat center
-              right;
+  @include pwnplus-select-field($input-border-color);
 }
 
-// Error highlighting.
+label, .label {
+  @include pwnplus-label;
+}
+
 .field_with_errors {
-  input[type=text], input[type=email], input[type=tel], input[type=password],
-      input[type=search], input[type=number], select, textarea {
-    border: 1px solid #FF0000;
-    box-shadow: inset 0 1px 2px #FF8888;
-    -moz-box-shadow: inset 0 1px 2px #FF8888;
-    -webkit-box-shadow: inset 0 1px 2px #FF8888;
-    background-color: #FFEEEE;
-  }
-
-  input[type=radio], input[type=checkbox] {
-    border: 1px solid #FF0000;
-    box-shadow: inset 0 1px 2px #FF8888;
-    -moz-box-shadow: inset 0 1px 2px #FF8888;
-    -webkit-box-shadow: inset 0 1px 2px #FF8888;
-    background-color: #FFEEEE;
+  input[type=text], select, textarea {
+    @include pwnplus-field-error-highlighting;
   }
 }
+

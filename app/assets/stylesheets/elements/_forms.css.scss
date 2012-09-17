@@ -3,30 +3,41 @@ form {
     display: table;
     border-collapse: collapse;
     width: 100%;
-    
+
     &.hidden {
       display: none;
     }
-  
+
     .field {
       display: table-row;
       margin: 0;
-      padding: 0 0 0.2em 0;
+      padding: 0 0 0.25em 0;
+      vertical-align: top;
       &.hidden {
         display: none;
       }
-  
+
       > * {
         display: table-cell;
-        vertical-align: middle;
+        // When browsers implement inline-box-align, use it.
+        // inline-box-align: initial;
+        // vertical-align: baseline;
+        vertical-align: top;
         margin: 0;
       }
-      > label {
-        padding: 0 0.4em 0 0;
+      > label, > .label, > .field_with_errors {
+        display: block; // gets wrapped by table-cell
+        padding-right: 0.375em;
         text-align: right;
       }
       > .value {
-        padding: 0 0 0.25em 0;
+        padding-bottom: 0.25em;
+        > input, select, textarea {
+          vertical-align: top;
+        }
+        > input[type=checkbox], > input[type=radio] {
+          vertical-align: middle;
+        }
         > .field_with_errors {
          display: block;
         }
@@ -34,27 +45,26 @@ form {
       > .comment {
         padding: 0 0 0 0.5em;
       }
-      
+
       input, select, textarea {
         font-size: inherit;
       }
-      input, select:first-child:last-child, textarea { 
+      input, select:first-child:last-child, textarea {
         width: 100%;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
+        @include box-sizing(border-box);
       }
       input[type=radio], input[type=checkbox] {
-        width: auto;
+        width: 1.2em;
+        @include box-sizing(content-box);
       }
     }
   }
-  
+
   .action {
     margin: 0;
     padding: 0;
     text-align: center;
-    
+
     input[type=submit], input[type=button], button {
       min-width: 7em;
     }

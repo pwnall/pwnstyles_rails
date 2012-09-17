@@ -18,6 +18,8 @@ body {
 }
 
 #real-body {
+  position: absolute;
+  width: 100%;
   background-color: #ffffff;
   -moz-box-flex: 1;
   -webkit-box-flex: 1;
