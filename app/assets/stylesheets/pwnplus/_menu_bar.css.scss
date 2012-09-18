@@ -21,6 +21,7 @@
   li {
     margin: 0;
     padding: 0;
+    white-space: nowrap;
   }
 
   vertical-align: bottom;
@@ -35,7 +36,10 @@
 
     > ol {
       list-style: none;
-      display: none;
+      display: block;
+      @include opacity(0);
+      height: 0;
+      overflow: hidden;
       background-color: $bar-color;
       margin: 0;
       padding: 0;
@@ -52,7 +56,8 @@
   }
   > li:hover {
     > ol {
-      display: block;
+      @include opacity(1);
+      height: auto;
     }
   }
   li:hover > a {
