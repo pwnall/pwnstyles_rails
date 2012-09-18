@@ -13,10 +13,6 @@ select {
   @include pwnplus-select-field($input-border-color);
 }
 
-label, .label {
-  @include pwnplus-label;
-}
-
 .field_with_errors {
   input[type=text], select, textarea {
     @include pwnplus-field-error-highlighting;

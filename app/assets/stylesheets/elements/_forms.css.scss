@@ -12,34 +12,26 @@ form {
       display: table-row;
       margin: 0;
       padding: 0 0 0.25em 0;
-      vertical-align: top;
       &.hidden {
         display: none;
       }
 
       > * {
         display: table-cell;
-        // When browsers implement inline-box-align, use it.
-        // inline-box-align: initial;
-        // vertical-align: baseline;
-        vertical-align: top;
+        vertical-align: baseline;
         margin: 0;
       }
       > label, > .label, > .field_with_errors {
-        display: block; // gets wrapped by table-cell
         padding-right: 0.375em;
         text-align: right;
       }
       > .value {
         padding-bottom: 0.25em;
-        > input, select, textarea {
-          vertical-align: top;
-        }
-        > input[type=checkbox], > input[type=radio] {
-          vertical-align: middle;
-        }
         > .field_with_errors {
          display: block;
+        }
+        textarea {
+          vertical-align: top;
         }
       }
       > .comment {

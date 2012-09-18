@@ -99,6 +99,6 @@ hr {
 
 @each $tag in input, select {
   #{$tag} {
-    vertical-align: middle;
+    vertical-align: baseline;
   }
 }
