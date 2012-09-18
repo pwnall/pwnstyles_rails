@@ -50,6 +50,10 @@
     text-shadow: none;
     color: $placeholder-text-color;
   }
+  &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
 
 // Google Plus-like stylng for box-like form fields (radio, checkbox).
