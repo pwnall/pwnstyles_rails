@@ -18,12 +18,20 @@ body {
 }
 
 #real-body {
-  position: absolute;
+  position: relative;
   width: 100%;
   background-color: #ffffff;
   -moz-box-flex: 1;
   -webkit-box-flex: 1;
   box-flex: 1;
+}
+#real-body::before {
+  display: block;
+  content: ".";
+  margin: 0;
+  padding: 0;
+  height: 0;
+  visibility: hidden;
 }
 #header, #footer {
   -moz-box-flex: 0;
