@@ -31,7 +31,7 @@ form {
          display: block;
         }
         textarea {
-          vertical-align: top;
+          vertical-align: baseline;
         }
       }
       > .comment {
@@ -52,7 +52,7 @@ form {
     }
   }
 
-  .action {
+  .actions {
     margin: 0;
     padding: 0;
     text-align: center;
