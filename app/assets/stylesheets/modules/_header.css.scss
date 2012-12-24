@@ -68,6 +68,12 @@
 
   img.logo {
     vertical-align: -$logo-image-baseline;
+    @if $logo-image-height {
+      height: $logo-image-height;
+    }
+    @if $logo-image-width {
+      width: $logo-image-width;
+    }
   }
 }
 
