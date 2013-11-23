@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Victor Costan"]
-  s.date = "2013-03-05"
+  s.date = "2013-11-23"
   s.description = "Included CSS was designed for reuse across pwnb.us apps."
   s.email = "victor@costan.us"
   s.extra_rdoc_files = [
@@ -39,7 +39,7 @@ Gem::Specification.new do |s|
     "app/assets/stylesheets/elements/_lists.css.scss",
     "app/assets/stylesheets/elements/_tables.css.scss",
     "app/assets/stylesheets/elements/_text.css.scss",
-    "app/assets/stylesheets/generic/_compass.css.scss",
+    "app/assets/stylesheets/generic/_compass_setup.css.scss",
     "app/assets/stylesheets/generic/_pwnfx.css.scss",
     "app/assets/stylesheets/generic/_reset.css.scss",
     "app/assets/stylesheets/modules/_body.css.scss",
@@ -78,32 +78,29 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<compass-rails>, [">= 1.0.3"])
-      s.add_runtime_dependency(%q<rails>, [">= 3.2.3"])
-      s.add_runtime_dependency(%q<sass-rails>, [">= 3.2.5"])
+      s.add_runtime_dependency(%q<compass-rails>, [">= 2.0.alpha0"])
+      s.add_runtime_dependency(%q<rails>, [">= 4.0.1"])
+      s.add_runtime_dependency(%q<sass-rails>, [">= 3.2.6"])
       s.add_development_dependency(%q<minitest>, [">= 3.4.0"])
-      s.add_development_dependency(%q<bundler>, [">= 1.2.0"])
-      s.add_development_dependency(%q<jeweler>, [">= 1.8.4"])
-      s.add_development_dependency(%q<rcov>, [">= 0"])
+      s.add_development_dependency(%q<bundler>, [">= 1.3.5"])
+      s.add_development_dependency(%q<jeweler>, [">= 1.8.7"])
       s.add_development_dependency(%q<simplecov>, [">= 0"])
     else
-      s.add_dependency(%q<compass-rails>, [">= 1.0.3"])
-      s.add_dependency(%q<rails>, [">= 3.2.3"])
-      s.add_dependency(%q<sass-rails>, [">= 3.2.5"])
+      s.add_dependency(%q<compass-rails>, [">= 2.0.alpha0"])
+      s.add_dependency(%q<rails>, [">= 4.0.1"])
+      s.add_dependency(%q<sass-rails>, [">= 3.2.6"])
       s.add_dependency(%q<minitest>, [">= 3.4.0"])
-      s.add_dependency(%q<bundler>, [">= 1.2.0"])
-      s.add_dependency(%q<jeweler>, [">= 1.8.4"])
-      s.add_dependency(%q<rcov>, [">= 0"])
+      s.add_dependency(%q<bundler>, [">= 1.3.5"])
+      s.add_dependency(%q<jeweler>, [">= 1.8.7"])
       s.add_dependency(%q<simplecov>, [">= 0"])
     end
   else
-    s.add_dependency(%q<compass-rails>, [">= 1.0.3"])
-    s.add_dependency(%q<rails>, [">= 3.2.3"])
-    s.add_dependency(%q<sass-rails>, [">= 3.2.5"])
+    s.add_dependency(%q<compass-rails>, [">= 2.0.alpha0"])
+    s.add_dependency(%q<rails>, [">= 4.0.1"])
+    s.add_dependency(%q<sass-rails>, [">= 3.2.6"])
     s.add_dependency(%q<minitest>, [">= 3.4.0"])
-    s.add_dependency(%q<bundler>, [">= 1.2.0"])
-    s.add_dependency(%q<jeweler>, [">= 1.8.4"])
-    s.add_dependency(%q<rcov>, [">= 0"])
+    s.add_dependency(%q<bundler>, [">= 1.3.5"])
+    s.add_dependency(%q<jeweler>, [">= 1.8.7"])
     s.add_dependency(%q<simplecov>, [">= 0"])
   end
 end
