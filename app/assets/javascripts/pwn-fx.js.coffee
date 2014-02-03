@@ -196,7 +196,9 @@ class PwnFxRender
       source = scope.querySelector sourceSelector
       html = source.innerHTML
       if randomizeRegExp
-        randomId = 'r' + Date.now() + '_' + Math.random()
+        # The id has to be completely numerical, otherwise strong_parameters
+        # will think it's an attribute and reject it.
+        randomId = Date.now() + Math.random().toString().substring(2)
         html = html.replace randomizeRegExp, randomId
       for targetElement in PwnFx.queryScope(scope, targetSelector)
         targetElement.insertAdjacentHTML insertionPoint, html
