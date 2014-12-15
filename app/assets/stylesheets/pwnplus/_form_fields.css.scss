@@ -107,17 +107,17 @@
   );
   padding: 0.125em 2ex 0.125em 0.5ex;
   text-overflow: ellipsis;
-  -webkit-appearance: textfield;
-  -moz-appearance: textfield;
-  background-image: asset_data_url("pwnstyles/select-arrow.svg");
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: asset-data-url("pwnstyles/select-arrow.svg");
   background-repeat: no-repeat;
   background-position: center right;
   background-size: auto 1em;
   &:hover, &:focus {
-    background-image: asset_data_url("pwnstyles/select-arrow-emph.svg");
+    background-image: asset-data-url("pwnstyles/select-arrow-emph.svg");
   }
-  // Animating the arrow SVG is glitchy on Chrome.
-  transition: all .218s, background-image 0s;
+  // Animating the arrow SVG is glitchy on Chrome. 0s is ignored, 1ms works.
+  transition: all 0.218s, background-image 1ms;
 }
 
 // Import to highlight a form field to indicate errors in the input.
