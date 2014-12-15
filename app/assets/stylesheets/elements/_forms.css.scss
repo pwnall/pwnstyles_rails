@@ -43,11 +43,11 @@ form {
       }
       input, select:first-child:last-child, textarea {
         width: 100%;
-        @include box-sizing(border-box);
+        box-sizing: border-box;
       }
       input[type=radio], input[type=checkbox] {
         width: 1.2em;
-        @include box-sizing(content-box);
+        box-sizing: content-box;
       }
     }
   }

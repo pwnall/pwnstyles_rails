@@ -10,16 +10,16 @@
     $active-border-color: $hover-border-color,
     $subdued: true
 ) {
-  @include inline-block;
+  display: inline-block;
 
   margin: 0;
   padding: 0.2em 1ex 0 1ex;
   border: 1px solid $border-color;
-  @include border-radius(2px);
+  border-radius: 2px;
 
   color: $text-color;
   @if not $subdued {
-    @include text-shadow(0 1px rgba(0, 0, 0, 0.1));
+    text-shadow: 0 1px rgba(0, 0, 0, 0.1);
   }
   font-size: 1.25em;
   line-height: 1.375em;
@@ -28,19 +28,20 @@
   text-overflow: ellipsis;
 
   background-color: $color;
-  @include background(linear-gradient(top, lighten($color, 2%),
-                                      darken($color, 2%)));
+  background: linear-gradient(top, lighten($color, 2%), darken($color, 2%));
 
-  @include transition(all .218s);
+  transition: all .218s;
 
   @if $subdued {
     img {
-      @include filter(grayscale(0.4));
+      -webkit-filter: grayscale(0.4);
+      filter: grayscale(0.4);
     }
   }
   @if not $subdued {
     img {
-      @include filter(brightness(0.95));
+      -webkit-filter: brightness(0.95);
+      filter: brightness(0.95);
     }
   }
 
@@ -52,19 +53,20 @@
     color: $hover-text-color;
     border-color: $hover-border-color;
     @if not $subdued {
-      @include text-shadow(0 1px rgba(0, 0, 0, 0.3));
-    }
+      text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+  }
 
     @if $subdued {
-      @include box-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
       img {
-        @include filter(grayscale(0));
+        filter: grayscale(0);
       }
     }
     @if not $subdued {
-      @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
       img {
-        @include filter(brightness(1.05));
+        -webkit-filter: brightness(1.05);
+        filter: brightness(1.05);
       }
     }
   }
@@ -72,20 +74,21 @@
     color: $active-text-color;
     border-color: $active-border-color;
 
-    @include background(linear-gradient(top, darken($color, 2%),
-                                        lighten($color, 2%)));
+    background: linear-gradient(top, darken($color, 2%), lighten($color, 2%));
 
     @if $subdued {
-      @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
       img {
         -webkit-filter: grayscale(0);
+        filter: grayscale(0);
       }
     }
     @if not $subdued {
-      @include text-shadow(0 1px rgba(0, 0, 0, 0.3));
-      @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+      text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
       img {
-        @include filter(brightness(1.05));
+        -webkit-filter: brightness(1.05);
+        filter: brightness(1.05);
       }
     }
   }

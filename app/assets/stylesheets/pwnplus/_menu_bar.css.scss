@@ -26,18 +26,18 @@
 
   vertical-align: bottom;
   > li {
-    @include inline-block;
+    display: inline-block;
     background-color: $bar-color;
     vertical-align: bottom;
 
     > a {
-      @include inline-block;
+      display: inline-block;
     }
 
     > ol {
       list-style: none;
       display: block;
-      @include opacity(0);
+      opacity: 0;
       height: 0;
       overflow: hidden;
       background-color: $bar-color;
@@ -47,7 +47,7 @@
       position: absolute;
       z-index: $z-index;
 
-      @include box-shadow(0 1px 1px 1px rgba(0, 0, 0, 0.1));
+      box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
 
       a {
         padding: 0 2.5em 0 0.5em;
@@ -56,7 +56,7 @@
   }
   > li:hover {
     > ol {
-      @include opacity(1);
+      opacity: 1;
       height: auto;
     }
   }
@@ -64,7 +64,8 @@
     background-color: $hover-bar-color;
     color: $hover-text-color;
     img {
-      @include filter(grayscale(0));
+      -webkit-filter: grayscale(0);
+      filter: grayscale(0);
     }
   }
 
@@ -74,7 +75,8 @@
     text-decoration: none;
     color: inherit;
     img {
-      @include filter(grayscale(0.33));
+      -webkit-filter: grayscale(0.33);
+      filter: grayscale(0.33);
     }
   }
   a:visited {
@@ -102,7 +104,7 @@
       padding: 0 1px 0 0.5em;
     }
     > li:last-child a span {
-      @include inline-block;
+      display: inline-block;
     }
   }
 }

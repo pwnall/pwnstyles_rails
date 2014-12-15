@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'sass-rails', '>= 4.0.4'
-gem 'compass-rails', '>= 2.0.0'
-gem 'rails', '>= 4.1.7'
+gem 'sass-rails', '>= 5.0.0'
+gem 'rails', '>= 4.1.8'
 
 group :development do
   gem 'minitest', '>= 3.4.0'
