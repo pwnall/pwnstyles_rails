@@ -143,8 +143,9 @@ PwnFx = new PwnFxClass
 #
 # Attributes:
 #   data-pwnfx-move: an identifier connecting the move's target element
-#   data-pwnfx-move-target: set to the same value as data-pwnfx-move on the
-#       element that will receive the moved element as its last child
+#   data-pwnfx-move-target: a space-separated list of identifiers, one of which
+#       should match the value of data-pwnfx-move; set on the element that will
+#       receive the moved element as its last child
 #   data-pwnfx-move-method: 'append' adds the moved as the element as the
 #       target's last child, 'replace' clears the target element, then adds the
 #       moved element as the target's only child
@@ -152,7 +153,7 @@ class PwnFxMove
   constructor: (element, identifier, scopeId) ->
     scope = PwnFx.resolveScope scopeId, element
     method = element.getAttribute('data-pwnfx-move-method') || 'append'
-    target = document.querySelector "[data-pwnfx-move-target=\"#{identifier}\"]"
+    target = document.querySelector "[data-pwnfx-move-target~=\"#{identifier}\"]"
 
     switch method
       when 'append'
@@ -175,14 +176,15 @@ PwnFx.registerEffect 'move', PwnFxMove
 #       beforebegin, afterbegin, beforeend, afterend; defaults to beforeend
 #   data-pwnfx-render-randomize: regexp pattern whose matches will be replaced
 #       with a random string; useful for generating unique IDs
-#   data-pwnfx-render-target: set on the element(s) receiving the rendered HTML;
-#       set to the identifier in data-pwnfx-render
+#   data-pwnfx-render-target: a space-separated list of identifiers, one of
+#       which should match the value of data-pwnfx-render; set on the element(s)
+#       receiving the rendered HTML
 #   data-pwnfx-render-source: set to the identifier in data-pwnfx-render, on the
 #       <script> tag containing the source HTML
 class PwnFxRender
   constructor: (element, identifier, scopeId) ->
     sourceSelector = "script[data-pwnfx-render-source=\"#{identifier}\"]"
-    targetSelector = "[data-pwnfx-render-target=\"#{identifier}\"]"
+    targetSelector = "[data-pwnfx-render-target~=\"#{identifier}\"]"
     insertionPoint = element.getAttribute('data-pwnfx-render-where') ||
                      'beforeend'
     randomizedPatten = element.getAttribute('data-pwnfx-render-randomize')
@@ -221,11 +223,12 @@ PwnFx.registerEffect 'render', PwnFxRender
 #   data-pwnfx-delayed-method: the HTTP method of AJAX request (default: POST)
 #   data-pwnfx-delayed-ms: the delay between the page load and the issuing of
 #                          the AJAX request (default: 1000ms)
-#   data-pwnfx-delayed-target: set to the value of data-pwnfx-delayed on the
-#                              element populated with the AJAX response
+#   data-pwnfx-delayed-target: a space-separated list of identifiers, one of which
+#       should match the value of data-pwnfx-delayed; set on the element
+#       populated with the AJAX response
 class PwnFxDelayed
   constructor: (element, identifier, scopeId) ->
-    targetSelector = "[data-pwnfx-delayed-target=\"#{identifier}\"]"
+    targetSelector = "[data-pwnfx-delayed-target~=\"#{identifier}\"]"
     xhrUrl = element.getAttribute('data-pwnfx-delayed-url')
     xhrMethod = element.getAttribute('data-pwnfx-delayed-method') || 'POST'
     xhrForm = PwnFx.parentForm element
@@ -254,11 +257,12 @@ PwnFx.registerEffect 'delayed', PwnFxDelayed
 #   data-pwnfx-refresh-method: the HTTP method of AJAX request (default: POST)
 #   data-pwnfx-refresh-ms: delay between a change on the source element and
 #                          AJAX refresh requests (default: 200ms)
-#   data-pwnfx-refresh-target: set to the value of data-pwnfx-refresh on the
-#                              element populated with the AJAX response
+#   data-pwnfx-refresh-target: a space-separated list of identifiers, one of which
+#       should match the value of data-pwnfx-refresh; set on the element
+#       populated with the AJAX response
 class PwnFxRefresh
   constructor: (element, identifier, scopeId) ->
-    targetSelector = "[data-pwnfx-refresh-target=\"#{identifier}\"]"
+    targetSelector = "[data-pwnfx-refresh-target~=\"#{identifier}\"]"
     xhrUrl = element.getAttribute('data-pwnfx-refresh-url')
     xhrMethod = element.getAttribute('data-pwnfx-refresh-method') || 'POST'
     xhrForm = PwnFx.parentForm element
@@ -444,11 +448,12 @@ PwnFx.registerEffect 'showif', PwnFxShowIf
 #
 # Attributes:
 #   data-pwnfx-remove: an identifier connecting the elements to be removed
-#   data-pwnfx-remove-target: set to the same value as data-pwnfx-remove on
-#       elements that will be removed when the element is clicked
+#   data-pwnfx-remove-target: a space-separated list of identifiers, one of which
+#       should match the value of data-pwnfx-remove; set on elements that will
+#       be removed when the element is clicked
 class PwnFxRemove
   constructor: (element, identifier, scopeId) ->
-    targetSelector = "[data-pwnfx-remove-target=\"#{identifier}\"]"
+    targetSelector = "[data-pwnfx-remove-target~=\"#{identifier}\"]"
 
     onClick = (event) ->
       scope = PwnFx.resolveScope scopeId, element
