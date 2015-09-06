@@ -21,6 +21,7 @@
   @if not $subdued {
     text-shadow: 0 1px rgba(0, 0, 0, 0.1);
   }
+  font-family: inherit;
   font-size: 1.25em;
   line-height: 1.375em;
   font-weight: $font-weight;
