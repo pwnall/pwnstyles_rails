@@ -15,12 +15,21 @@ class PwnFxClass
   constructor: ->
     @effects = []
     @effectsByName = {}
+    @hiddenClassName = null
+
+  # @attribute {String} the default name of the DOM class used to hide
+  #     elements; by default, this is set to the data-pwnfx-hidden-class
+  #     attribute of the <body> element
+  hiddenClassName: null
 
   # Wires JS to elements with data-pwnfx attributes.
   #
   # @param {Element} root the element whose content is wired; use document at
   #                       load time
   wire: (root) ->
+    @hiddenClassName ||=
+        document.body.getAttribute('data-pwnfx-hidden-class') || 'hidden'
+
     for effect in @effects
       attrName = "data-pwnfx-#{effect[0]}"
       effectClass = effect[1]
@@ -55,7 +64,8 @@ class PwnFxClass
   #     returned if no such element exists or if scope is null
   resolveScope: (scopeId, element) ->
     element = null if scopeId is null
-    while element != null && element.getAttribute('data-pwnfx-scope') != scopeId
+    while element isnt null &&
+        element.getAttribute('data-pwnfx-scope') isnt scopeId
       element = element.parentElement
     element || document
 
@@ -67,7 +77,7 @@ class PwnFxClass
   #     selector; the scope container can belong to the returned array
   queryScope: (scope, selector) ->
     scopeMatches = false
-    if scope != document
+    if scope isnt document
       # TODO: machesSelector is in a W3C spec, but only implemented using
       #       prefixes; the code below should be simplified once browsers
       #       implement it without vendor prefixes
@@ -106,7 +116,7 @@ class PwnFxClass
   #     element is not wrapped in a <form>
   parentForm: (element) ->
     while element
-      return element if element.nodeName == 'FORM'
+      return element if element.nodeName is 'FORM'
       element = element.parentNode
     null
 
@@ -130,7 +140,7 @@ class PwnFxClass
 
   # Called when an XHR request issued by PwnFx.xhr works out.
   _xhr_onload: ->
-    if (@status < 200 || @status >= 300) && (@status != 304)
+    if (@status < 200 || @status >= 300) && (@status isnt 304)
       throw new Error(
           "XHR result ignored due to HTTP #{@status}: #{@statusText}")
     @pwnfxOnData @responseText
@@ -223,8 +233,8 @@ PwnFx.registerEffect 'render', PwnFxRender
 #   data-pwnfx-delayed-method: the HTTP method of AJAX request (default: POST)
 #   data-pwnfx-delayed-ms: the delay between the page load and the issuing of
 #                          the AJAX request (default: 1000ms)
-#   data-pwnfx-delayed-target: a space-separated list of identifiers, one of which
-#       should match the value of data-pwnfx-delayed; set on the element
+#   data-pwnfx-delayed-target: a space-separated list of identifiers, one of
+#       which should match the value of data-pwnfx-delayed; set on the element
 #       populated with the AJAX response
 class PwnFxDelayed
   constructor: (element, identifier, scopeId) ->
@@ -257,8 +267,8 @@ PwnFx.registerEffect 'delayed', PwnFxDelayed
 #   data-pwnfx-refresh-method: the HTTP method of AJAX request (default: POST)
 #   data-pwnfx-refresh-ms: delay between a change on the source element and
 #                          AJAX refresh requests (default: 200ms)
-#   data-pwnfx-refresh-target: a space-separated list of identifiers, one of which
-#       should match the value of data-pwnfx-refresh; set on the element
+#   data-pwnfx-refresh-target: a space-separated list of identifiers, one of
+#       which should match the value of data-pwnfx-refresh; set on the element
 #       populated with the AJAX response
 class PwnFxRefresh
   constructor: (element, identifier, scopeId) ->
@@ -282,10 +292,10 @@ class PwnFxRefresh
 
     onChange = ->
       value = element.value
-      return true if value == refreshOldValue
+      return true if value is refreshOldValue
       refreshOldValue = value
 
-      window.clearTimeout changeTimeout if changeTimeout != null
+      window.clearTimeout changeTimeout if changeTimeout isnt null
       changeTimeout = window.setTimeout ajaxRefresh, refreshDelay
       true
 
@@ -303,14 +313,16 @@ PwnFx.registerEffect 'refresh', PwnFxRefresh
 #       belong to the same confirmation group; their values have to match to
 #       trigger the "win" condition
 #   data-pwnfx-confirm-class: the CSS class that is added to hidden elements;
-#       (default: hidden)
+#       by default, this is {PwnFx.hiddenClassName}, which gets its value from
+#       the data-pwnfx-hidden-class attribute on <body>
 #   data-pwnfx-confirm-win: CSS selector identifying the elements to be shown
 #       when the "win" condition is triggered, and hidden otherwise
 #   data-pwnfx-confirm-fail: CSS selector identifying the elements to be hidden
 #       when the "win" condition is triggered, and shown otherwise
 class PwnFxConfirm
   constructor: (element, identifier, scopeId) ->
-    hiddenClass = element.getAttribute('data-pwnfx-confirm-class') || 'hidden'
+    hiddenClass = element.getAttribute('data-pwnfx-confirm-class') ||
+                  PwnFx.hiddenClassName
     sourceSelector = "[data-pwnfx-confirm-done=\"#{identifier}\"]"
     winSelector = "[data-pwnfx-confirm-win=\"#{identifier}\"]"
     failSelector = "[data-pwnfx-confirm-fail=\"#{identifier}\"]"
@@ -320,9 +332,9 @@ class PwnFxConfirm
       value = null
       matching = true
       for sourceElement, index in PwnFx.queryScope(scope, sourceSelector)
-        if index == 0
+        if index is 0
           value = sourceElement.value
-        else if sourceElement.value != value
+        else if sourceElement.value isnt value
           matching = false
           break
 
@@ -350,7 +362,8 @@ PwnFx.registerEffect 'confirm', PwnFxConfirm
 #       element is clicked, "checked" means events are triggered when the
 #       element is checked; (default: click)
 #   data-pwnfx-hide-class: the CSS class that is added to hidden elements;
-#       (default: hidden)
+#       by default, this is {PwnFx.hiddenClassName}, which gets its value from
+#       the data-pwnfx-hidden-class attribute on <body>
 #   data-pwnfx-hide-positive: set to the same value as data-pwnfx-hide on
 #       elements that will be hidden when a positive event (click / check) is
 #       triggered, and shown when a negative event (uncheck) is triggered
@@ -360,11 +373,12 @@ PwnFx.registerEffect 'confirm', PwnFxConfirm
 class PwnFxHide
   constructor: (element, identifier, scopeId) ->
     trigger = element.getAttribute('data-pwnfx-hide-trigger') || 'click'
-    hiddenClass = element.getAttribute('data-pwnfx-hide-class') || 'hidden'
+    hiddenClass = element.getAttribute('data-pwnfx-hide-class') ||
+                  PwnFx.hiddenClassName
     positiveSelector = "[data-pwnfx-hide-positive=\"#{identifier}\"]"
     negativeSelector = "[data-pwnfx-hide-negative=\"#{identifier}\"]"
     onChange = (event) ->
-      positive = (trigger == 'click') || element.checked
+      positive = (trigger is 'click') || element.checked
       hideSelector = if positive then positiveSelector else negativeSelector
       showSelector = if positive then negativeSelector else positiveSelector
 
@@ -373,15 +387,15 @@ class PwnFxHide
         targetElement.classList.add hiddenClass
       for targetElement in PwnFx.queryScope(scope, showSelector)
         targetElement.classList.remove hiddenClass
-      if trigger == 'click'
+      if trigger is 'click'
         event.preventDefault()
         false
       else
         true
 
-    if trigger == 'click'
+    if trigger is 'click'
       element.addEventListener 'click', onChange, false
-    else if trigger == 'checked'
+    else if trigger is 'checked'
       element.addEventListener 'change', onChange, false
       onChange()
     else
@@ -397,14 +411,16 @@ PwnFx.registerEffect 'hide', PwnFxHide
 #   data-pwnfx-showif-replace: the name of a tag that will be used to replace
 #       the hidden element (default: don't replace the hidden element)
 #   data-pwnfx-showif-class: the CSS class that is added to hidden elements;
-#       (default: hidden)
+#       by default, this is {PwnFx.hiddenClassName}, which gets its value from
+#       the data-pwnfx-hidden-class attribute on <body>
 #   data-pwnfx-showif-is: the value that the <input> has to match for this
 #       element to be shown
 #   data-pwnfx-showif-source: set to the identifier in data-pwnfx-showif
 #       on the <input> whose value determines if this element is shown or not
 class PwnFxShowIf
   constructor: (element, identifier, scopeId) ->
-    hiddenClass = element.getAttribute('data-pwnfx-showif-class') || 'hidden'
+    hiddenClass = element.getAttribute('data-pwnfx-showif-class') ||
+                  PwnFx.hiddenClassName
     showValue = element.getAttribute 'data-pwnfx-showif-is'
     sourceSelector = "[data-pwnfx-showif-source=\"#{identifier}\"]"
 
@@ -418,8 +434,8 @@ class PwnFxShowIf
     isHidden = false
     onChange = (event) ->
       value = event.target.value
-      willHide = value != showValue
-      return if isHidden == willHide
+      willHide = value isnt showValue
+      return if isHidden is willHide
       isHidden = willHide
 
       if replacement
@@ -448,9 +464,9 @@ PwnFx.registerEffect 'showif', PwnFxShowIf
 #
 # Attributes:
 #   data-pwnfx-remove: an identifier connecting the elements to be removed
-#   data-pwnfx-remove-target: a space-separated list of identifiers, one of which
-#       should match the value of data-pwnfx-remove; set on elements that will
-#       be removed when the element is clicked
+#   data-pwnfx-remove-target: a space-separated list of identifiers, one of
+#       which should match the value of data-pwnfx-remove; set on elements that
+#       will be removed when the element is clicked
 class PwnFxRemove
   constructor: (element, identifier, scopeId) ->
     targetSelector = "[data-pwnfx-remove-target~=\"#{identifier}\"]"
@@ -470,11 +486,11 @@ PwnFx.registerEffect 'remove', PwnFxRemove
 window.PwnFx = PwnFx
 
 # Wire up the entire DOM after the document is loaded.
-if document.readyState == 'loading'
+if document.readyState is 'loading'
   loaded = false
   document.addEventListener 'readystatechange', ->
     return if loaded
-    if document.readyState != 'loading'
+    if document.readyState isnt 'loading'
       PwnFx.wire(document)
       loaded = true
 else
