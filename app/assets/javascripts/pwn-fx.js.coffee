@@ -324,7 +324,7 @@ class PwnFxConfirm
 
       hideSelector = if matching then failSelector else winSelector
       showSelector = if matching then winSelector else failSelector
-      for targetElement in PwnFx.queryScope(scope, winSelector)
+      for targetElement in PwnFx.queryScope(scope, showSelector)
         targetElement.classList.remove hiddenClass
       for targetElement in PwnFx.queryScope(scope, hideSelector)
         targetElement.classList.add hiddenClass
