@@ -404,6 +404,51 @@ class PwnFxHide
 PwnFx.registerEffect 'hide', PwnFxHide
 
 
+# Disables / enables elements when an element is clicked or checked / unchecked.
+#
+# Attributes:
+#   data-pwnfx-disable: a name for the events caused by this element's triggering
+#   data-pwnfx-disable-trigger: "click" means events are triggered when the
+#       element is clicked, "checked" means events are triggered when the
+#       element is checked; (default: click)
+#   data-pwnfx-disable-positive: set to the same value as data-pwnfx-disable on
+#       elements that will be disabled when a positive event (click / check) is
+#       triggered, and enabled when a negative event (uncheck) is triggered
+#   data-pwnfx-disable-negative: set to the same value as data-pwnfx-disable on
+#       elements that will be enabled when a positive event (click / check) is
+#       triggered, and disabled when a negative event (uncheck) is triggered
+class PwnFxDisable
+  constructor: (element, identifier, scopeId) ->
+    trigger = element.getAttribute('data-pwnfx-disable-trigger') || 'click'
+    positiveSelector = "[data-pwnfx-disable-positive=\"#{identifier}\"]"
+    negativeSelector = "[data-pwnfx-disable-negative=\"#{identifier}\"]"
+    onChange = (event) ->
+      positive = (trigger is 'click') || element.checked
+      disableSelector = if positive then positiveSelector else negativeSelector
+      enableSelector = if positive then negativeSelector else positiveSelector
+
+      scope = PwnFx.resolveScope scopeId, element
+      for targetElement in PwnFx.queryScope(scope, disableSelector)
+        targetElement.disabled = true
+      for targetElement in PwnFx.queryScope(scope, enableSelector)
+        targetElement.disabled = false
+      if trigger is 'click'
+        event.preventDefault()
+        false
+      else
+        true
+
+    if trigger is 'click'
+      element.addEventListener 'click', onChange, false
+    else if trigger is 'checked'
+      element.addEventListener 'change', onChange, false
+      onChange()
+    else
+      throw new Error("Unimplemented pwnfx-disable trigger #{trigger}")
+
+PwnFx.registerEffect 'disable', PwnFxDisable
+
+
 # Shows / hides elements in a DOM depending on an input's value.
 #
 # Attributes:
